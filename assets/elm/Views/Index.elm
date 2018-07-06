@@ -32,7 +32,7 @@ headerView : Model -> Html Msg
 headerView model =
     header [ class "header" ] [
         nav [] [
-            li [ class "pull-left" ] [ aNavLink HomeIndexRoute "poacpm" ],
+            li [ class "pull-left" ] [ aNavLink HomeIndexRoute "poac" ],
             li [ class "pull-left" ] [ searchView model ],
             li [] [ aNavLink PackagesRoute "Packages" ],
             li [] [ aNavLink DonateRoute "Donate" ],
@@ -48,7 +48,7 @@ phraseView =
             text "Modern Package Manager for C++ Developers"
         ],
         h2 [] [
-            text "poacpm is the C++ package manager that for open source."
+            text "poac is the C++ package manager that for open source."
         ],
         h2 [] [
             text "Easy to introduce to your project, you can use the package intuitively."
@@ -84,7 +84,7 @@ section1View =
             div [ class "text" ] [
                 h2 [] [ text "Simple and Easy-to-Use Interface" ],
                 p [] [
-                    text "poacpm is the C++ package manager and poac is the CLI application provided to the client."
+                    text "poac is the C++ package manager and poac is the CLI application provided to the client."
                 ],
                 p [] [
                     text "poac is easy to use because it refers to the interface of a newer and more used package manager."
@@ -120,12 +120,12 @@ section3View =
     div [ class "section text-center back-gray" ] [
         div [ class "table" ] [
             div [ class "text" ] [
-                h2 [ class "padtop-50" ] [ text "poacpm is Open Source Software" ],
+                h2 [ class "padtop-50" ] [ text "poac is Open Source Software" ],
                 p [] [
-                    text "All related to poacpm is open source."
+                    text "All related to poac is open source."
                 ],
                 p [] [
-                    text "It is possible to make new ones based on this, and it is also possible to contribute to poacpm."
+                    text "It is possible to make new ones based on this, and it is also possible to contribute to poac."
                 ],
                 p [] [
                     text "The server side is written in Elixir and the client side is written in C++."
