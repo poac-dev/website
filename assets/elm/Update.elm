@@ -7,6 +7,7 @@ import Navigation
 import Routing exposing (Route(..), parse, toPath)
 import Uuid exposing (uuidGenerator)
 import Random.Pcg exposing (step)
+import Ports exposing (githubAuth)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -21,9 +22,6 @@ update msg model =
 
         NavigateTo route ->
             model ! [ Navigation.newUrl <| toPath route ]
-
-        AutoLogin ->
-            model ! [ Navigation.load "/auth" ]
 
         HandleSearchInput value ->
             { model | search = value } ! []
@@ -106,6 +104,9 @@ update msg model =
             { model | loginUser = Success user } ! []
         TokenUpdated (Err error) ->
             { model | loginUser = Failure (toString error) } ! []
+
+        LoginOrSignup ->
+            ( model, githubAuth () )
 
 --        KeyDown 191 ->
 --            model ! [ FocusOn ]

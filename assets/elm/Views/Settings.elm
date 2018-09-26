@@ -116,4 +116,5 @@ keys model =
                 ]
         _ ->
             -- TODO: I want to call without clicking
-            a [ onClick <| AutoLogin ] [ text "You are not login" ]
+            a [ ] [ text "You are not login" ]
+--            a [ onClick <| AutoLogin ] [ text "You are not login" ]

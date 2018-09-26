@@ -9,7 +9,6 @@ import Routing exposing (Route)
 type Msg
     = UrlChange Navigation.Location
     | NavigateTo Route
-    | AutoLogin
     | KeyDown Int
     | FocusOn
     | SelectMeta String
@@ -23,3 +22,4 @@ type Msg
     | DeleteSession
     | NewToken
     | DeleteToken String
+    | LoginOrSignup

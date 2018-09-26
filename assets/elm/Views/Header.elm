@@ -90,4 +90,5 @@ getUser model =
                 ]
             ]
         _ ->
-            a [ class "login pulse", href "/auth" ] [ text "SIGNUP" ]
+            a [ class "login pulse", onClick <| LoginOrSignup ] [ text "SIGNUP" ]
+--            a [ class "login pulse", href "/auth" ] [ text "SIGNUP" ]

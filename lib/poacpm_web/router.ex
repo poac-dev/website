@@ -24,6 +24,8 @@ defmodule PoacpmWeb.Router do
 
     scope "/v1", V1 do
       get("/packages", PackagesController, :search)
+      post("/packages/upload", PackagesController, :upload)
+      post("/packages/validate", PackagesController, :validate)
 #      get("/packages/:name", PackagesController, :show)
 #      post("/packages", PackagesController, :create)
       # current user (Return error if you are not logged in)

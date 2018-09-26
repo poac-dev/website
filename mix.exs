@@ -48,7 +48,10 @@ defmodule Poacpm.Mixfile do
       {:oauth2, "~> 0.9.2"},
       {:cors_plug, "~> 1.5"},
       {:timex, "~> 3.2"},
-      {:map_diff, "~> 1.3"}
+      {:map_diff, "~> 1.3"},
+      {:yaml_elixir, "~> 2.1"},
+      {:google_api_storage, "~> 0.1.0"},
+      {:goth, "~> 0.10.0"}
     ]
   end
 end
