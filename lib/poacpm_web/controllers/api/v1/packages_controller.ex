@@ -50,17 +50,6 @@ defmodule PoacpmWeb.Api.V1.PackagesController do
     end
   end
 
-
-  @spec suggest_to_list(map) :: list
-  defp suggest_to_list(res) do
-    res
-    |> Map.fetch!("suggest")
-    |> Map.fetch!("my-suggestion")
-    |> Enum.at(0)
-    |> Map.fetch!("options")
-    |> Enum.flat_map(fn x -> [Map.fetch!(x, "_source")] end)
-  end
-
   defp upload_to_gcs(file) do
     # Authenticate
     {:ok, token} = Goth.Token.for_scope("https://www.googleapis.com/auth/cloud-platform")
