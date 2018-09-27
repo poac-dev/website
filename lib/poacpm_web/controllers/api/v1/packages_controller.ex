@@ -1,7 +1,6 @@
 defmodule PoacpmWeb.Api.V1.PackagesController do
   use PoacpmWeb, :controller
   alias PoacpmWeb.Api.ErrorView
-  alias Poacpm.ElasticSearch
   import Phoenix.Controller, only: [
     put_new_layout: 2,
     put_new_view: 2,
@@ -18,7 +17,7 @@ defmodule PoacpmWeb.Api.V1.PackagesController do
 #      |> suggest_to_list()
 
 #    json(conn, %{"packages" => response})
-    json(conn, %{"packages" => "hoge"})
+    json(conn, %{"packages" => word})
   end
   def search(conn, _), do: json(conn, ErrorView.render("404.json"))
 
