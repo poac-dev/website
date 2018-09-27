@@ -11,25 +11,18 @@ defmodule PoacpmWeb.Api.V1.PackagesController do
 
 
   @spec search(Plug.Conn.t(), map) :: Plug.Conn.t()
-  def search(conn, %{"search" => word}) do
-    response =
-      word
-      |> ElasticSearch.suggest()
-      |> suggest_to_list()
+  def search(conn, %{"q" => word}) do
+#    response =
+#      word
+#      |> ElasticSearch.suggest()
+#      |> suggest_to_list()
 
-    json(conn, %{"packages" => response})
+#    json(conn, %{"packages" => response})
+    json(conn, %{"packages" => "hoge"})
   end
   def search(conn, _), do: json(conn, ErrorView.render("404.json"))
 
-#  @spec show(Plug.Conn.t(), map) :: Plug.Conn.t()
-#  def show(conn, %{"name" => name}) do
-##    user = Dynamo.get_item("User", %{id: id})
-##           |> ExAws.request!()
-##           |> Dynamo.decode_item(as: User)
-##    # そのユーザーでログインしてなければ，apikeyがnull
-##    json(conn, user)
-#  end
-#
+
   def validate(conn, %{"token" => token}) do
     # TODO: もし，tokenが存在していれば
     IO.inspect(token)
