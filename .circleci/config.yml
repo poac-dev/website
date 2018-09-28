@@ -25,7 +25,7 @@ jobs:
             - v1-build-cache
 
       # dummy
-      - run: touch /service/goth-credentials
+      - run: mkdir /service && touch /service/goth-credentials
       # get updated dependencies & compile them & post-attachment static type analysis
       - run: mix do deps.get, compile, dialyzer
 
