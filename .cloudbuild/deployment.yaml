@@ -23,6 +23,7 @@ spec:
         volumeMounts:
         - name: goth-credentials
           mountPath: /tmp
+          readOnly: true
         env:
         - name: GOOGLE_APPLICATION_CREDENTIALS
           value: "/tmp/poac-pm-e9379f725343.json"
