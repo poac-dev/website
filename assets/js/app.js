@@ -52,7 +52,7 @@ app.ports.login.subscribe(function() {
         db.collection("users").doc(userId).set(userInfo);
 
         userInfo.id = userId;
-        console.log(userInfo);
+        // console.log(userInfo);
         app.ports.getAuth.send(userInfo);
     }).catch(function(error) {
         // Handle Errors here.
