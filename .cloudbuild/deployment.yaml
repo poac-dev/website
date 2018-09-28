@@ -20,3 +20,13 @@ spec:
         ports:
         - containerPort: 8080
           protocol: TCP
+        volumeMounts:
+        - name: goth-credentials
+          mountPath: /tmp
+        env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: "/tmp/poac-pm-e9379f725343.json"
+      volumes:
+      - name: goth-credentials
+        secret:
+          secretName: goth-credentials
