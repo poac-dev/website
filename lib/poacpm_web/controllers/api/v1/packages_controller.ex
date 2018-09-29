@@ -135,7 +135,7 @@ defmodule PoacpmWeb.Api.V1.PackagesController do
         [body: data]
       )
       # Upload to google cloud storage
-#      upload_to_gcs(user_params["data"])
+      upload_to_gcs(user_params["data"])
       json(conn, %{"status" => "ok"})
     else
       json(conn, %{"status" => "err"})
