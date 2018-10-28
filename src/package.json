@@ -6,7 +6,7 @@
     "watch": "webpack --mode development --watch"
   },
   "dependencies": {
-    "firebase": "^5.5.1",
+    "firebase": "^5.5.6",
     "moment": "^2.22.2",
     "node-chartist": "^1.0.5"
   },
