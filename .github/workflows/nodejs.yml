@@ -18,7 +18,6 @@ jobs:
         npm --prefix "$PWD/hosting" ci
         npm --prefix "$PWD/functions" run lint
         npm --prefix "$PWD/functions" run build
-        npm --prefix "$PWD/hosting" run test
         npm --prefix "$PWD/hosting" run build
       env:
         CI: true
