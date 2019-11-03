@@ -7,7 +7,7 @@ poac is the package manager and CLI application provided to the client.
 > Official website:<br>
 https://poac.pm/
 
-> Docs:<br>
+> Documentations:<br>
 https://doc.poac.pm/
 
 
