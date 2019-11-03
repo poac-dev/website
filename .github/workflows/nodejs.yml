@@ -14,7 +14,6 @@ jobs:
         node-version: '12.x'
     - name: npm install, lint, test, and build
       run: |
-        echo ${{ github.ref }}
         npm --prefix "$PWD/functions" ci
         npm --prefix "$PWD/hosting" ci
         npm --prefix "$PWD/functions" run lint
@@ -23,7 +22,7 @@ jobs:
       env:
         CI: true
     - name: firebase deploy (only master branch)
-      if: github.ref == 'master'
+      if: github.ref == 'refs/heads/master'
       run: firebase deploy --token "$FIREBASE_TOKEN"
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
