@@ -14,6 +14,7 @@ jobs:
         node-version: '12.x'
     - name: npm install, lint, test, and build
       run: |
+        echo ${{ github.ref }}
         npm --prefix "$PWD/functions" ci
         npm --prefix "$PWD/hosting" ci
         npm --prefix "$PWD/functions" run lint
