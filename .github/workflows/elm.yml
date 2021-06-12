@@ -47,11 +47,6 @@ jobs:
       - run: npm ci
       - run: npm run deploy
 
-      # ref: https://github.com/isaacs/github/issues/408#issuecomment-632390593
-      - name: Create symbolic link for index.html
-        run: ln -s index.html 404.html
-        working-directory: dist
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
