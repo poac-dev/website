@@ -1,7 +1,7 @@
 module Algolia.Events exposing (onEnter)
 
 import Html.Styled exposing (Attribute)
-import Html.Styled.Events exposing (keyCode, on)
+import Html.Styled.Events exposing (on)
 import Json.Decode as Json
 
 
