@@ -1,6 +1,5 @@
-import { Flex, IconButton, useColorMode, useColorModeValue, Spacer, Link, Image, Center } from "@chakra-ui/react";
+import { Flex, IconButton, useColorMode, useColorModeValue, Spacer, Link, Image, Center , LinkBox, LinkOverlay } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import { LinkBox, LinkOverlay } from '@chakra-ui/react'
 
 import UserMenu from "./UserMenu";
 
@@ -12,8 +11,8 @@ export default function Header(): JSX.Element {
         <Flex>
             <Spacer />
             <LinkBox>
-                <LinkOverlay href='/'>
-                    <Image width='80px' src='/logo.svg' alt='Icon' />
+                <LinkOverlay href="/">
+                    <Image width="80px" src="/logo.svg" alt="Icon" />
                 </LinkOverlay>
             </LinkBox>
             <Spacer />

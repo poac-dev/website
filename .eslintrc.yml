@@ -1,2 +1,4 @@
 ---
-extends: next/core-web-vitals
+root: true
+extends:
+  - "@ken-matsui/eslint-config-next"
