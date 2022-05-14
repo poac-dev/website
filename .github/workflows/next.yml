@@ -18,8 +18,6 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Lint
         run: yarn lint
@@ -40,8 +38,6 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build
         run: yarn build

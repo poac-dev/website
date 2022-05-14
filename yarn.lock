@@ -777,27 +777,27 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@ken-matsui/eslint-config-js@^0.1.1":
-  version "0.1.1"
-  resolved "https://npm.pkg.github.com/download/@ken-matsui/eslint-config-js/0.1.1/39ec02126d8786f39f4f4a33e13b82008b8163c5ee173bbdb8699c216b066320#534097cf0890236bff1cb99413f1d78bee763c6d"
-  integrity sha512-w51Ko7sGOnEVirud5iw15Nk38dp8l3jV07m69yCjdEvzbZfukmBUdYjco+ZEUzjJnfhrbgi7Ps8CQJeW8HoJvA==
+"@ken-matsui/eslint-config-js@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@ken-matsui/eslint-config-js/-/eslint-config-js-0.1.0.tgz#13a938661b668a3219221c7a0e2d9257dd51525d"
+  integrity sha512-pY6UG72vusbyEJEOoAq43n+Bw0afTzXLxMOxoeY5tjGQ8T7wnradDJjKkJlaYSjN1nQnw4dexo1ktm1VMmPCPw==
 
 "@ken-matsui/eslint-config-next@^0.1.0":
   version "0.1.0"
-  resolved "https://npm.pkg.github.com/download/@ken-matsui/eslint-config-next/0.1.0/0d1a3c8a188578f5761ac3ff2cdb9dff4fccef1d18b6a91b17710d0254652d79#9d7169b42fce369574d713a038eb261e99e95add"
-  integrity sha512-ewY8o94uv9cPI92McfgTMBcI3UqJ6FN1XHoYuMaqiQ24lP5xExRlzZgLzu9Ku2HRMPTQrfhIPX2I7JckfuuSMQ==
+  resolved "https://registry.yarnpkg.com/@ken-matsui/eslint-config-next/-/eslint-config-next-0.1.0.tgz#c3ed28483c713e91466451255b460b08dca34de5"
+  integrity sha512-4h2pM9NJaX8iLTa0/x65mrPPg4NY+r5bC+hCc0gl6zzUkNvCyzbVdzqaASjUO3iOxow8yztj9CrvP4qOkIFkEQ==
 
 "@ken-matsui/eslint-config-react@^0.1.0":
   version "0.1.0"
-  resolved "https://npm.pkg.github.com/download/@ken-matsui/eslint-config-react/0.1.0/0d7ab6f5b7f02b4f137e6a3644575fcc711e15ec3e60e111a459001a13575670#abdd8afa2ddcdbf7e4d0c842a549e9e380f91fc6"
-  integrity sha512-AsoV2XW7XCr1CmHImHONyWn9WcvS/Hj+yBcRMIFydkLWcUaP90yUz6JEpycEQSnxhy7boHREuzjQdIF+lbR4tg==
+  resolved "https://registry.yarnpkg.com/@ken-matsui/eslint-config-react/-/eslint-config-react-0.1.0.tgz#850da1ae61973880d5af079a296e7c616b8ab55d"
+  integrity sha512-mCcTx3WFvNKD+TnFjKTd2kFyddBCFc/BnSmAdlL/4r7CKgHEXg67do5Wh+JlZ3dwmLtQ3cCUdVBB9IahGwfkUg==
   dependencies:
     eslint-plugin-react "^7.29.4"
 
 "@ken-matsui/eslint-config-typescript@^0.1.0":
   version "0.1.0"
-  resolved "https://npm.pkg.github.com/download/@ken-matsui/eslint-config-typescript/0.1.0/1f87dc4f608a5c6bf2a7f1fcf397c8a9fd3aa5a6b7339d5ac07c6857be37ed31#5a7d739511bb004ed4b530ef73192c67352ded25"
-  integrity sha512-Yk6+40QI1p9z/nwyAgmxek22WEzTwcFjeoLmKTHl3MPoDOBHpH0tOGDQkQ4QUmrg6kgIUZTKH6BMYj5NlwzH0w==
+  resolved "https://registry.yarnpkg.com/@ken-matsui/eslint-config-typescript/-/eslint-config-typescript-0.1.0.tgz#0077c5bc6e436db97aab772527f13d28844fe5a8"
+  integrity sha512-TpwquaTHgw4PGsDmZMaigY/UQMEXOYn2U9cE16XhZRynxh8nEp+Ws6jRdbHO84kw5jsZWc8LGf9iU6hcuwHuUQ==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^5.17.0"
     "@typescript-eslint/parser" "^5.17.0"
