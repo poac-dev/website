@@ -2,6 +2,8 @@ import { Flex, IconButton, useColorMode, useColorModeValue, Spacer, Link, Image,
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { LinkBox, LinkOverlay } from '@chakra-ui/react'
 
+import UserMenu from "./UserMenu";
+
 export default function Header(): JSX.Element {
     const { toggleColorMode } = useColorMode();
     const colorModeIcon = useColorModeValue(<MoonIcon />, <SunIcon />);
@@ -16,7 +18,7 @@ export default function Header(): JSX.Element {
             </LinkBox>
             <Spacer />
             <Center marginRight={5}>
-                <Link href={"https://doc.poac.pm/"} isExternal>Docs</Link>
+                <Link href="https://doc.poac.pm/" isExternal>Docs</Link>
             </Center>
             <IconButton
                 onClick={toggleColorMode}
@@ -24,6 +26,7 @@ export default function Header(): JSX.Element {
                 icon={colorModeIcon}
                 marginRight={5}
             />
+            <UserMenu />
             <Spacer />
         </Flex>
     );
