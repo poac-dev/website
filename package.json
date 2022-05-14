@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
   },
@@ -30,6 +31,7 @@
     "@types/react-instantsearch-dom": "^6.12.3",
     "eslint": "8.15.0",
     "eslint-config-next": "12.1.6",
+    "next-sitemap": "^2.5.20",
     "typescript": "4.6.4"
   }
 }
