@@ -7,7 +7,7 @@ export default function Header(): JSX.Element {
     const colorModeIcon = useColorModeValue(<MoonIcon />, <SunIcon />);
 
     return (
-        <Flex justify="space-evenly">
+        <Flex>
             <Spacer />
             <LinkBox>
                 <LinkOverlay href='/'>
@@ -15,7 +15,7 @@ export default function Header(): JSX.Element {
                 </LinkOverlay>
             </LinkBox>
             <Spacer />
-            <Link href={"https://doc.poac.pm/"} isExternal>Docs</Link>
+            <Link href={"https://doc.poac.pm/"} isExternal marginRight={5}>Docs</Link>
             <IconButton
                 onClick={toggleColorMode}
                 aria-label="Toggle theme"
