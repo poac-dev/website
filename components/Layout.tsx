@@ -6,7 +6,7 @@ import Footer from './Footer'
 
 export default function Layout({ children }: {children: ReactElement}): JSX.Element {
     return (
-        <VStack spacing={2} align="right">
+        <VStack spacing={5} align="right" marginY={5}>
             <Header />
             {children}
             <Footer />
