@@ -53,7 +53,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             props: {
                 packages: data,
                 page,
-                totalCount: count ? count : 0,
+                totalCount: count,
             },
         };
     }
