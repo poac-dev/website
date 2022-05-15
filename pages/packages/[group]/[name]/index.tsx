@@ -2,7 +2,7 @@ import { VStack, Heading, HStack, Tabs, TabList, Tab, TabPanels, TabPanel, Text,
 import type { GetServerSideProps } from "next";
 import { supabaseServerClient } from "@supabase/supabase-auth-helpers/nextjs";
 
-import type { Package as PackageType } from "../../../types";
+import type { Package as PackageType } from "../../../../types";
 
 interface NameProps {
     package: PackageType;
