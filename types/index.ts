@@ -1,16 +1,13 @@
 type uuid = string;
 
-interface PackageMetadata {
-    name: string;
-    version: string;
-}
-
-interface Metadata {
-    package: PackageMetadata;
-    dependencies: Record<string, unknown>;
-}
-
 export interface Package {
     id: uuid;
-    metadata: Metadata;
+    name: string;
+    version: string;
+    description: string;
+    edition: string;
+    authors: string[];
+    repository: string;
+    license: string;
+    metadata: Record<string, unknown>;
 }
