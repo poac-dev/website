@@ -1,11 +1,12 @@
 import type { NextPage } from "next";
-import { VStack, Heading } from "@chakra-ui/react";
+import { VStack, Heading, Image } from "@chakra-ui/react";
 
 import Search from "../components/Search";
 
 const Home: NextPage = () => {
     return (
         <VStack spacing={5}>
+            <Image src="/terminal.svg" maxWidth={700} alt="demo" />
             <Heading as="h1">
                 Package Manager for C++ Developers
             </Heading>
