@@ -1,7 +1,7 @@
 import { Container, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import type { ChangeEvent } from "react";
-import { useCallback, useLayoutEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 export default function Search(): JSX.Element {
@@ -12,7 +12,7 @@ export default function Search(): JSX.Element {
         setQuery(event.target.value);
     }, []);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (router.query.query && typeof router.query.query === "string") {
             setQuery(router.query.query);
         }
