@@ -38,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const perPage = context.query.perPage ? +context.query.perPage : 10;
 
     let request = supabaseServerClient(context)
-        .rpc<PackageType>("get_packages", {}, { count: "exact" })
+        .rpc<PackageType>("get_uniq_packages", {}, { count: "exact" })
         .select("*"); // TODO: Improve selection: name, total downloads, updated_at, ...
     if (query) {
         request = request.like("name", `%${query}%`);
@@ -47,16 +47,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const startIndex = (page - 1) * perPage;
     request = request.range(startIndex, startIndex + (perPage - 1));
 
-    const { data, error, status, count } = await request;
-    if (error && status !== 406) {
-        throw error;
+    const { data, count } = await request;
+    if (data && count) {
+        return {
+            props: {
+                packages: data,
+                page,
+                totalCount: count ? count : 0,
+            },
+        };
     }
-
     return {
-        props: {
-            packages: data,
-            page,
-            totalCount: count ? count : 0,
-        },
+        notFound: true,
     };
 };

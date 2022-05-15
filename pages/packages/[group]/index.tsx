@@ -36,19 +36,21 @@ export default function Group(props: GroupProps): JSX.Element {
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const group = context.query.group;
 
-    const { data, error, status, count } = await supabaseServerClient(context)
-        .rpc<PackageType>("get_packages", {}, { count: "exact" })
+    const { data, count } = await supabaseServerClient(context)
+        .rpc<PackageType>("get_uniq_packages", {}, { count: "exact" })
         .select("*") // TODO: Improve selection: name, total downloads, updated_at, ...
         .like("name", `${group}/%`);
-    if (error && status !== 406) {
-        throw error;
-    }
 
+    if (data && count) {
+        return {
+            props: {
+                packages: data,
+                group,
+                totalCount: count,
+            },
+        };
+    }
     return {
-        props: {
-            packages: data,
-            group,
-            totalCount: count ? count : 0,
-        },
+        notFound: true,
     };
 };
