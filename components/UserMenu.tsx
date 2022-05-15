@@ -3,6 +3,7 @@ import { Avatar, Center, Text, Button, Menu, MenuButton, MenuList, MenuItem, Men
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { User } from "@supabase/supabase-js";
 import { supabaseClient } from "@supabase/supabase-auth-helpers/nextjs";
+import { useCallback } from "react";
 
 import LoginButton from "~/components/LoginButton";
 
@@ -11,6 +12,10 @@ interface UserProps {
 }
 
 function User(props: UserProps): JSX.Element {
+    const signOut = useCallback(async (): Promise<void> => {
+        await supabaseClient.auth.signOut();
+    }, []);
+
     return (
         <Menu>
             <MenuButton as={Button}>
@@ -29,10 +34,7 @@ function User(props: UserProps): JSX.Element {
                 <MenuItem>Dashboard</MenuItem>
                 <MenuItem>Settings</MenuItem>
                 <MenuDivider />
-                <MenuItem onClick={async (): Promise<void> => {
-                    await supabaseClient.auth.signOut();
-                }}
-                >Sign Out</MenuItem>
+                <MenuItem onClick={signOut}>Sign Out</MenuItem>
             </MenuList>
         </Menu>
     );
