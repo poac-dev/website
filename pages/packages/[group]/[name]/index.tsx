@@ -1,4 +1,4 @@
-import { VStack, Heading, HStack, Tabs, TabList, Tab, TabPanels, TabPanel, Text, UnorderedList, ListItem } from "@chakra-ui/react";
+import { VStack, Heading, HStack, Tabs, TabList, Tab, TabPanels, TabPanel, Text, UnorderedList, ListItem, Link } from "@chakra-ui/react";
 import type { GetServerSideProps } from "next";
 import { supabaseServerClient } from "@supabase/supabase-auth-helpers/nextjs";
 
@@ -35,7 +35,9 @@ export default function Name(props: NameProps): JSX.Element {
                     </TabPanel>
                     <TabPanel>
                         <UnorderedList>
-                            {props.versions.map((v) => <ListItem key={v}>{v}</ListItem>)}
+                            {props.versions.map((v) => <ListItem key={v}>
+                                <Link href={`/packages/${props.package.name}/${v}`}>{v}</Link>
+                            </ListItem>)}
                         </UnorderedList>
                     </TabPanel>
                     <TabPanel>
