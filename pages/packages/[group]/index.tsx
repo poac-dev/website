@@ -2,19 +2,20 @@ import type { GetServerSideProps } from "next";
 import { VStack, Text, Center } from "@chakra-ui/react";
 import { supabaseServerClient } from "@supabase/supabase-auth-helpers/nextjs";
 
-import type { Package as PackageType } from "../types";
-import Package from "../components/Package";
+import type { Package as PackageType } from "../../../types";
+import Package from "../../../components/Package";
 
 interface SearchProps {
     packages: PackageType[];
-    page: number;
+    group: string;
     totalCount: number;
 }
 
-export default function Search(props: SearchProps): JSX.Element {
+export default function Group(props: SearchProps): JSX.Element {
     return (
         <Center>
             <VStack maxWidth={700} align="left" spacing={5}>
+                <Text>Packages owned by <Text as="b">{props.group}</Text></Text>
                 {props.totalCount !== 0 ?
                     <Text size="xs">
                         {/* TODO: Implement this logic correctly and pagination */}
@@ -25,7 +26,7 @@ export default function Search(props: SearchProps): JSX.Element {
                     </Text>
                 }
                 <VStack spacing={5}>
-                    {props.packages.map((p) => <Package key={p.id} package={p} />)}
+                    {props.packages.map((p) => <Package key={p.id} package={p} group={props.group} />)}
                 </VStack>
             </VStack>
         </Center>
@@ -33,19 +34,14 @@ export default function Search(props: SearchProps): JSX.Element {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const query = context.query.query;
-    const page = context.query.page ? +context.query.page : 1;
-    const perPage = context.query.perPage ? +context.query.perPage : 10;
+    const group = context.query.group;
 
     let request = supabaseServerClient(context)
         .from<PackageType>("packages")
         .select("*", { count: "exact" }); // TODO: Improve selection: name, total downloads, updated_at, ...
-    if (query) {
-        request = request.like("name", `%${query}%`);
+    if (group) {
+        request = request.like("name", `${group}/%`);
     }
-
-    const startIndex = (page - 1) * perPage;
-    request = request.range(startIndex, startIndex + (perPage - 1));
 
     const { data, error, status, count } = await request;
     if (error && status !== 406) {
@@ -55,7 +51,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
         props: {
             packages: data,
-            page,
+            group,
             totalCount: count ? count : 0,
         },
     };
