@@ -13,10 +13,10 @@ export default function Search(): JSX.Element {
     }, []);
 
     useEffect(() => {
-        if (router.query.query && typeof router.query.query === "string") {
+        if (router.pathname == "/search" && router.query.query && typeof router.query.query === "string") {
             setQuery(router.query.query);
         }
-    }, [router.query.query]);
+    }, [router.pathname, router.query.query]);
 
     return (
         <Container>
