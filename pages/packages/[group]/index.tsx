@@ -5,13 +5,13 @@ import { supabaseServerClient } from "@supabase/supabase-auth-helpers/nextjs";
 import type { Package as PackageType } from "../../../types";
 import Package from "../../../components/Package";
 
-interface SearchProps {
+interface GroupProps {
     packages: PackageType[];
     group: string;
     totalCount: number;
 }
 
-export default function Group(props: SearchProps): JSX.Element {
+export default function Group(props: GroupProps): JSX.Element {
     return (
         <Center>
             <VStack maxWidth={700} align="left" spacing={5}>
@@ -36,14 +36,10 @@ export default function Group(props: SearchProps): JSX.Element {
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const group = context.query.group;
 
-    let request = supabaseServerClient(context)
+    const { data, error, status, count } = await supabaseServerClient(context)
         .from<PackageType>("packages")
-        .select("*", { count: "exact" }); // TODO: Improve selection: name, total downloads, updated_at, ...
-    if (group) {
-        request = request.like("name", `${group}/%`);
-    }
-
-    const { data, error, status, count } = await request;
+        .select("*", { count: "exact" }) // TODO: Improve selection: name, total downloads, updated_at, ...
+        .like("name", `${group}/%`);
     if (error && status !== 406) {
         throw error;
     }
