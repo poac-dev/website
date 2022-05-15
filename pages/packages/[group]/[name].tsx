@@ -27,7 +27,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const name = context.query.name;
 
     const { data, error, status } = await supabaseServerClient(context)
-        .from<PackageType>("packages")
+        .rpc<PackageType>("get_packages")
         .select("*") // TODO: Improve selection: name, total downloads, updated_at, ...
         .eq("name", `${group}/${name}`)
         .limit(1)

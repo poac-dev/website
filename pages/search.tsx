@@ -38,8 +38,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const perPage = context.query.perPage ? +context.query.perPage : 10;
 
     let request = supabaseServerClient(context)
-        .from<PackageType>("packages")
-        .select("*", { count: "exact" }); // TODO: Improve selection: name, total downloads, updated_at, ...
+        .rpc<PackageType>("get_packages", {}, { count: "exact" })
+        .select("*"); // TODO: Improve selection: name, total downloads, updated_at, ...
     if (query) {
         request = request.like("name", `%${query}%`);
     }

@@ -37,8 +37,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const group = context.query.group;
 
     const { data, error, status, count } = await supabaseServerClient(context)
-        .from<PackageType>("packages")
-        .select("*", { count: "exact" }) // TODO: Improve selection: name, total downloads, updated_at, ...
+        .rpc<PackageType>("get_packages", {}, { count: "exact" })
+        .select("*") // TODO: Improve selection: name, total downloads, updated_at, ...
         .like("name", `${group}/%`);
     if (error && status !== 406) {
         throw error;
