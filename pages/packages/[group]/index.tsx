@@ -2,8 +2,8 @@ import type { GetServerSideProps } from "next";
 import { VStack, Text, Center } from "@chakra-ui/react";
 import { supabaseServerClient } from "@supabase/supabase-auth-helpers/nextjs";
 
-import type { Package as PackageType } from "../../../types";
-import Package from "../../../components/Package";
+import type { Package as PackageType } from "~/types";
+import Package from "~/components/Package";
 
 interface GroupProps {
     packages: PackageType[];

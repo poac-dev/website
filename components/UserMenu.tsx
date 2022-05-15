@@ -4,7 +4,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import { User } from "@supabase/supabase-js";
 import { supabaseClient } from "@supabase/supabase-auth-helpers/nextjs";
 
-import LoginButton from "./LoginButton";
+import LoginButton from "~/components/LoginButton";
 
 interface UserProps {
     user: User;

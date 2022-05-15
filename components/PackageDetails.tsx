@@ -14,7 +14,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare, faFileLines, faLink, faTags } from "@fortawesome/free-solid-svg-icons";
 
-import type { Package as PackageType } from "../types";
+import type { Package as PackageType } from "~/types";
 
 interface PackageDetailsProps {
     package: PackageType;
@@ -46,6 +46,8 @@ export default function PackageDetails(props: PackageDetailsProps): JSX.Element 
                     <Tab>
                         <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                         {props.package.metadata["dependencies"] ?
+                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                            // @ts-ignore
                             <Code marginLeft={2}>{Object.keys(props.package.metadata["dependencies"]).length}</Code> :
                             <Code marginLeft={2}>0</Code>
                         }

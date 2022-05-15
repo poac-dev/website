@@ -1,8 +1,8 @@
 import type { GetServerSideProps } from "next";
 import { supabaseServerClient } from "@supabase/supabase-auth-helpers/nextjs";
 
-import type { Package as PackageType } from "../../../../types";
-import PackageDetails from "../../../../components/PackageDetails";
+import type { Package as PackageType } from "~/types";
+import PackageDetails from "~/components/PackageDetails";
 
 interface VersionProps {
     package: PackageType;
