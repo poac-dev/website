@@ -14,7 +14,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare, faFileLines, faLink, faTags } from "@fortawesome/free-solid-svg-icons";
 
-import type { Package as PackageType } from "~/types";
+import type { Package as PackageType } from "~/utils/types";
 
 interface PackageDetailsProps {
     package: PackageType;

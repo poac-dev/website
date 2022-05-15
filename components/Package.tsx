@@ -1,6 +1,6 @@
 import { Heading, HStack, LinkBox, LinkOverlay, Text } from "@chakra-ui/react";
 
-import type { Package } from "~/types";
+import type { Package } from "~/utils/types";
 
 interface PackageProps {
     package: Package;
