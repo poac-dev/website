@@ -39,7 +39,7 @@ export default function SearchResult(props: SearchResultProps): JSX.Element {
                             0 packages found.
                         </Text>
                     }
-                    <Select width={70} value={perPage} onChange={handleChange}>
+                    <Select width={79} value={perPage} onChange={handleChange}>
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="30">30</option>
