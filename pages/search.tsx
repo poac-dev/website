@@ -8,6 +8,7 @@ import SearchResult from "~/components/SearchResult";
 interface SearchProps {
     packages: PackageType[];
     query: string;
+    perPage: number;
     page: number;
     totalCount: number;
 }
@@ -18,6 +19,7 @@ export default function Search(props: SearchProps): JSX.Element {
             packages={props.packages}
             query={props.query}
             pathname="/search"
+            perPage={props.perPage}
             page={props.page}
             totalCount={props.totalCount}
         />
@@ -45,6 +47,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             props: {
                 packages: data,
                 query,
+                perPage,
                 page,
                 totalCount: count,
             },

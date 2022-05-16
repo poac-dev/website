@@ -10,13 +10,13 @@ import type { Dispatch, SetStateAction } from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 
-import { PER_PAGE } from "~/utils/constants";
 import type { Position } from "~/utils/types";
 
 interface SearchPaginationProps {
     pathname: string;
     query?: Record<string, unknown>;
     setCurrentPos: Dispatch<SetStateAction<Position>>;
+    perPage: number;
     page: number;
     totalCount: number;
 }
@@ -28,10 +28,12 @@ export default function SearchPagination(props: SearchPaginationProps): JSX.Elem
         setCurrentPage,
         pagesCount,
         pages,
+        pageSize,
+        setPageSize,
     } = usePagination({
         total: props.totalCount,
         initialState: {
-            pageSize: PER_PAGE,
+            pageSize: props.perPage,
             currentPage: props.page,
         },
     });
@@ -41,18 +43,23 @@ export default function SearchPagination(props: SearchPaginationProps): JSX.Elem
             pathname: props.pathname,
             query: {
                 page: currentPage,
+                perPage: pageSize,
                 ...props.query,
             },
         });
-    }, [currentPage]);
+    }, [currentPage, pageSize]);
 
     useEffect(() => {
-        const currentLast = currentPage * PER_PAGE;
+        const currentLast = currentPage * pageSize;
         props.setCurrentPos({
-            first: currentLast - (PER_PAGE - 1),
+            first: currentLast - (pageSize - 1),
             last: currentLast > props.totalCount ? props.totalCount : currentLast,
         });
-    }, [currentPage, props.totalCount]);
+    }, [currentPage, props.totalCount, pageSize]);
+
+    useEffect(() => {
+        setPageSize(props.perPage);
+    }, [props.perPage, setPageSize]);
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     return ( // @ts-ignore

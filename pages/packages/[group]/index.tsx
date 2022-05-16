@@ -9,6 +9,7 @@ import SearchResult from "~/components/SearchResult";
 interface GroupProps {
     packages: PackageType[];
     group: string;
+    perPage: number;
     page: number;
     totalCount: number;
 }
@@ -21,6 +22,7 @@ export default function Group(props: GroupProps): JSX.Element {
                 packages={props.packages}
                 group={props.group}
                 pathname={`/packages/${props.group}`}
+                perPage={props.perPage}
                 page={props.page}
                 totalCount={props.totalCount}
             />
@@ -47,6 +49,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             props: {
                 packages: data,
                 group,
+                perPage,
                 page,
                 totalCount: count,
             },
