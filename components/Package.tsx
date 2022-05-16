@@ -9,7 +9,7 @@ interface PackageProps {
 
 export default function Package(props: PackageProps): JSX.Element {
     return (
-        <LinkBox borderWidth="1px" borderRadius="md" boxShadow="md" padding={5} minWidth="100%">
+        <LinkBox borderWidth="1px" borderRadius="md" boxShadow="md" padding={5} width="30vw" minWidth="100%">
             <HStack spacing={3}>
                 <Heading size="sm" my="2">
                     <LinkOverlay href={"/packages/" + props.package.name}>

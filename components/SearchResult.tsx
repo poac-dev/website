@@ -19,7 +19,7 @@ export default function SearchResult(props: SearchResultProps): JSX.Element {
 
     return (
         <Center>
-            <VStack maxWidth={700} spacing={5}>
+            <VStack spacing={5}>
                 {props.totalCount !== 0 ?
                     <Text size="xs">
                         Displaying <Text as="b">
