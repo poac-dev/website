@@ -1,5 +1,6 @@
 import type { GetServerSideProps } from "next";
 import { supabaseServerClient } from "@supabase/supabase-auth-helpers/nextjs";
+import { VStack, Text } from "@chakra-ui/react";
 
 import type { Package as PackageType } from "~/utils/types";
 import { PER_PAGE } from "~/utils/constants";
@@ -14,13 +15,16 @@ interface GroupProps {
 
 export default function Group(props: GroupProps): JSX.Element {
     return (
-        <SearchResult
-            packages={props.packages}
-            group={props.group}
-            pathname={`/packages/${props.group}`}
-            page={props.page}
-            totalCount={props.totalCount}
-        />
+        <VStack>
+            <Text>Packages owned by <Text as="b">{props.group}</Text></Text>
+            <SearchResult
+                packages={props.packages}
+                group={props.group}
+                pathname={`/packages/${props.group}`}
+                page={props.page}
+                totalCount={props.totalCount}
+            />
+        </VStack>
     );
 }
 
