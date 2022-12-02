@@ -25,7 +25,7 @@
     "framer-motion": "^6",
     "humanize-string": "^3.0.0",
     "next": "12.3.1",
-    "nextjs-progressbar": "^0.0.14",
+    "nextjs-progressbar": "^0.0.16",
     "randomstring": "^1.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -47,7 +47,7 @@
     "@types/react-dom": "18.0.9",
     "@types/react-syntax-highlighter": "^15.5.5",
     "eslint": "8.26.0",
-    "eslint-config-next": "13.0.1",
+    "eslint-config-next": "13.0.5",
     "next-sitemap": "^2.5.28",
     "typescript": "4.8.4"
   }
