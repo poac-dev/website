@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import { VStack, Heading, Button, HStack } from "@chakra-ui/react";
 import { DownloadIcon, InfoIcon } from "@chakra-ui/icons";
-import NextLink from "next/link";
 
 import Search from "~/components/Search";
 import Meta from "~/components/Meta";
@@ -21,17 +20,20 @@ const Home: NextPage = () => {
                 </Heading>
                 <Search />
                 <HStack>
-                    <NextLink
+                    <Button
+                        as="a"
                         href='https://doc.poac.dev/getting-started/installation.html'
-                        passHref
+                        leftIcon={<DownloadIcon />}
                     >
-                        <Button as="a" leftIcon={<DownloadIcon />}>
-                            Install Poac
-                        </Button>
-                    </NextLink>
-                    <NextLink href='https://doc.poac.dev/guide' passHref>
-                        <Button leftIcon={<InfoIcon />}>Getting Started</Button>
-                    </NextLink>
+                        Install Poac
+                    </Button>
+                    <Button
+                        as="a"
+                        href='https://doc.poac.dev/guide'
+                        leftIcon={<InfoIcon />}
+                    >
+                        Getting Started
+                    </Button>
                 </HStack>
             </VStack>
         </>

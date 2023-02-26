@@ -15,7 +15,13 @@ type LinkCompoundType = LinkProps & {
 
 export const Link = forwardRef<LinkCompoundType, "a">(
     ({ children, href, isExternal, ...restProps }, ref) => (
-        <ChakraLink as={NextLink} href={href} ref={ref} isExternal={isExternal} {...restProps}>
+        <ChakraLink
+            as={NextLink}
+            href={href}
+            ref={ref}
+            isExternal={isExternal}
+            {...restProps}
+        >
             {children} {isExternal && <ExternalLinkIcon mx="2px" />}
         </ChakraLink>
     ),
