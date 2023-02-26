@@ -47,7 +47,7 @@ export default function Header(): JSX.Element {
                 icon={colorModeIcon}
                 marginRight={5}
             />
-            <UserMenu />
+            {/* <UserMenu /> */}
             <Spacer />
         </Flex>
     );
