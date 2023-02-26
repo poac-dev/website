@@ -1,9 +1,9 @@
 import type { GetStaticProps, GetStaticPaths } from "next";
-import { supabaseClient } from "@supabase/supabase-auth-helpers/nextjs";
 
 import type { Package } from "~/utils/types";
 import PackageDetails from "~/components/PackageDetails";
 import Meta from "~/components/Meta";
+import { BASE_API_URL } from "~/utils/constants";
 
 interface NameProps {
     package: Package;
@@ -37,22 +37,53 @@ export const getStaticProps: GetStaticProps = async (context) => {
         };
     }
 
-    const { data: packages, error: e1 } = await supabaseClient
-        .rpc<Package>("get_packages")
-        .select("*")
-        .eq("name", `${group}/${name}`);
-    if (e1) {
-        console.error(e1);
+    const res = await fetch(
+        `${BASE_API_URL}/packages/${group}/${name}/specific`,
+    );
+    const data = await res.json();
+
+    const packages: Package[] = [];
+    for (const rawPkg of data["data"]) {
+        const pkg: Package = {
+            id: rawPkg["id"],
+            published_at: rawPkg["published_at"],
+            name: rawPkg["name"],
+            version: rawPkg["version"],
+            description: rawPkg["description"],
+            edition: rawPkg["edition"],
+            authors: rawPkg["authors"],
+            repository: rawPkg["repository"],
+            license: rawPkg["license"],
+            metadata: rawPkg["metadata"],
+            readme: rawPkg["readme"],
+        };
+        packages.push(pkg);
     }
 
     if (packages && packages.length > 0) {
         const latestPackage = packages[0];
         // Retrieve dependents
-        const { data: dependents, error: e2 } = await supabaseClient
-            .rpc<Package>("get_dependents", { depname: latestPackage.name })
-            .select("*");
-        if (e2) {
-            console.error(e2);
+        const res = await fetch(
+            `${BASE_API_URL}/packages/${latestPackage.name}/dependents`,
+        );
+        const data = await res.json();
+
+        const dependents: Package[] = [];
+        for (const rawPkg of data["data"]) {
+            const pkg: Package = {
+                id: rawPkg["id"],
+                published_at: rawPkg["published_at"],
+                name: rawPkg["name"],
+                version: rawPkg["version"],
+                description: rawPkg["description"],
+                edition: rawPkg["edition"],
+                authors: rawPkg["authors"],
+                repository: rawPkg["repository"],
+                license: rawPkg["license"],
+                metadata: rawPkg["metadata"],
+                readme: rawPkg["readme"],
+            };
+            dependents.push(pkg);
         }
 
         return {

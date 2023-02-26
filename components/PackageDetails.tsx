@@ -40,6 +40,7 @@ import remarkGfm from "remark-gfm";
 import { CodeBlock } from "~/components/CodeBlock";
 import type { Package, User } from "~/utils/types";
 import { Link } from "~/components/Link";
+import { BASE_API_URL } from "~/utils/constants";
 
 interface SubItemProps {
     title: string;
@@ -72,14 +73,22 @@ function PackageSub(props: PackageSubProps): JSX.Element {
     const [owners, setOwners] = useState<User[]>([]);
 
     useEffect(() => {
-        supabaseClient
-            .rpc<User>("get_owners", { pkgname: props.package.name })
-            .select("*")
-            .then(({ data }) => {
-                if (data) {
-                    setOwners(data);
-                }
-            });
+        fetch(`${BASE_API_URL}/packages/${props.package.name}/owners`)
+            .then((res) => {
+                res.json().then((data) => {
+                    const users: User[] = [];
+                    for (const rawUser of data["data"]) {
+                        users.push({
+                            id: rawUser["id"],
+                            name: rawUser["name"],
+                            user_name: rawUser["user_name"],
+                            avatar_url: rawUser["avatar_url"],
+                        });
+                    }
+                    setOwners(users);
+                });
+            })
+            .catch((err) => console.error(err));
     }, [props.package.name]);
 
     return (
