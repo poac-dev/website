@@ -4,7 +4,7 @@ import { Center, Text } from "@chakra-ui/react";
 import type { PackageOverview } from "~/utils/types";
 import SearchResult from "~/components/SearchResult";
 import Meta from "~/components/Meta";
-import {BASE_API_URL, PER_PAGE} from "~/utils/constants";
+import { BASE_API_URL, PER_PAGE } from "~/utils/constants";
 
 interface SearchProps {
     packages?: PackageOverview[];
@@ -71,7 +71,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             version: rawPkg["version"],
             edition: rawPkg["edition"],
             description: rawPkg["description"],
-        }
+        };
         packages.push(pkg);
     }
 

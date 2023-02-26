@@ -1,5 +1,7 @@
 import type { NextPage } from "next";
-import { VStack, Heading, Image } from "@chakra-ui/react";
+import { VStack, Heading, Button, HStack } from "@chakra-ui/react";
+import { DownloadIcon, InfoIcon } from "@chakra-ui/icons";
+import NextLink from "next/link";
 
 import Search from "~/components/Search";
 import Meta from "~/components/Meta";
@@ -9,7 +11,6 @@ const Home: NextPage = () => {
         <>
             <Meta />
             <VStack spacing={5}>
-                <Image src="/terminal.svg" maxWidth={700} alt="demo" />
                 <Heading as="h1">Package Manager for C++ Developers</Heading>
                 <Heading as="h2" size="md">
                     Poac is a C++ package manager which is for open source
@@ -19,6 +20,19 @@ const Home: NextPage = () => {
                     intuitively.
                 </Heading>
                 <Search />
+                <HStack>
+                    <NextLink
+                        href='https://doc.poac.dev/getting-started/installation.html'
+                        passHref
+                    >
+                        <Button as="a" leftIcon={<DownloadIcon />}>
+                            Install Poac
+                        </Button>
+                    </NextLink>
+                    <NextLink href='https://doc.poac.dev/guide' passHref>
+                        <Button leftIcon={<InfoIcon />}>Getting Started</Button>
+                    </NextLink>
+                </HStack>
             </VStack>
         </>
     );
