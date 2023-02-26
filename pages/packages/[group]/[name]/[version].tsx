@@ -1,4 +1,4 @@
-import type { GetStaticProps , GetStaticPaths } from "next";
+import type { GetStaticProps, GetStaticPaths } from "next";
 import { supabaseClient } from "@supabase/supabase-auth-helpers/nextjs";
 
 import type { Package } from "~/utils/types";
@@ -19,7 +19,11 @@ export default function Version(props: VersionProps): JSX.Element {
                 package={props.package}
                 description={props.package.description}
             />
-            <PackageDetails package={props.package} versions={props.versions} dependents={props.dependents} />
+            <PackageDetails
+                package={props.package}
+                versions={props.versions}
+                dependents={props.dependents}
+            />
         </>
     );
 }
@@ -28,9 +32,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const group = context.params?.group;
     const name = context.params?.name;
     const version = context.params?.version;
-    if (typeof group !== "string" ||
+    if (
+        typeof group !== "string" ||
         typeof name !== "string" ||
-        typeof version !== "string") {
+        typeof version !== "string"
+    ) {
         return {
             notFound: true,
         };
@@ -49,7 +55,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
         if (specificPackage) {
             // Retrieve dependents
             const { data: dependents, error: e2 } = await supabaseClient
-                .rpc<Package>("get_dependents", { "depname": specificPackage.name })
+                .rpc<Package>("get_dependents", {
+                    depname: specificPackage.name,
+                })
                 .select("*");
             if (e2) {
                 console.error(e2);

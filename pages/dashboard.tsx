@@ -1,6 +1,9 @@
 import { VStack, Heading, Text, HStack, Spacer } from "@chakra-ui/react";
 import type { User } from "@supabase/supabase-js";
-import { getUser, supabaseServerClient } from "@supabase/supabase-auth-helpers/nextjs";
+import {
+    getUser,
+    supabaseServerClient,
+} from "@supabase/supabase-auth-helpers/nextjs";
 import { ViewIcon } from "@chakra-ui/icons";
 import type { GetServerSideProps } from "next";
 
@@ -23,14 +26,19 @@ function DashboardPage(props: DashboardPageProps): JSX.Element {
                 <Text>My packages</Text>
                 <Spacer />
                 <ViewIcon />
-                <Link href={`/users/${props.user.user_metadata["user_name"]}`}>Show all</Link>
+                <Link href={`/users/${props.user.user_metadata["user_name"]}`}>
+                    Show all
+                </Link>
             </HStack>
-            {props.packages.length > 0 ?
+            {props.packages.length > 0 ? (
                 <VStack spacing={5}>
-                    {props.packages.map((p) => <Package key={p.id} package={p} />)}
-                </VStack> :
+                    {props.packages.map((p) => (
+                        <Package key={p.id} package={p} />
+                    ))}
+                </VStack>
+            ) : (
                 <Text>no packages to show</Text>
-            }
+            )}
         </VStack>
     );
 }
@@ -44,7 +52,11 @@ export default function Dashboard(props: DashboardProps): JSX.Element {
     return (
         <>
             <Meta title="Dashboard" />
-            {props.user ? <DashboardPage user={props.user} packages={props.packages} /> : <NeedAuth />}
+            {props.user ? (
+                <DashboardPage user={props.user} packages={props.packages} />
+            ) : (
+                <NeedAuth />
+            )}
         </>
     );
 }
@@ -65,7 +77,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         .rpc<PackageOverview>(
             "get_owned_packages",
             { username: user.user_metadata["user_name"] },
-            { count: "exact" }
+            { count: "exact" },
         )
         .select("id, name, version, description, edition")
         .range(0, 5);

@@ -19,19 +19,27 @@ interface SearchProps {
 export default function Search(props: SearchProps): JSX.Element {
     return (
         <>
-            <Meta title={props.query.length === 0 ? "All Packages" : `Searching for '${props.query}'`} />
-            {
-                props.packages && props.totalCount ?
-                    <SearchResult
-                        packages={props.packages}
-                        query={props.query}
-                        current_path="/search"
-                        perPage={props.perPage}
-                        page={props.page}
-                        totalCount={props.totalCount}
-                    /> :
-                    <Center><Text>no packages found</Text></Center>
-            }
+            <Meta
+                title={
+                    props.query.length === 0
+                        ? "All Packages"
+                        : `Searching for '${props.query}'`
+                }
+            />
+            {props.packages && props.totalCount ? (
+                <SearchResult
+                    packages={props.packages}
+                    query={props.query}
+                    current_path="/search"
+                    perPage={props.perPage}
+                    page={props.page}
+                    totalCount={props.totalCount}
+                />
+            ) : (
+                <Center>
+                    <Text>no packages found</Text>
+                </Center>
+            )}
         </>
     );
 }
@@ -40,7 +48,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const query = context.query.query ?? "";
     const page = context.query.page ? +context.query.page : 1;
     const perPage = context.query.perPage ? +context.query.perPage : PER_PAGE;
-    const sort: Sort = context.query.sort ? context.query.sort as Sort : "relevance";
+    const sort: Sort = context.query.sort
+        ? (context.query.sort as Sort)
+        : "relevance";
 
     let request = supabaseServerClient(context)
         .rpc<PackageOverview>("get_uniq_packages", {}, { count: "exact" })

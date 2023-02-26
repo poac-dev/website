@@ -11,5 +11,5 @@ export default function Settings(): JSX.Element {
         router.push("/settings/profile", undefined, { shallow: true });
     }, [router]);
 
-    return (<Meta title="Settings" />);
+    return <Meta title="Settings" />;
 }

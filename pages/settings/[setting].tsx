@@ -24,7 +24,13 @@ import {
     ModalHeader,
     ModalCloseButton,
     ModalBody,
-    ModalFooter, Input, Spinner, Box, Tooltip, Code, Divider,
+    ModalFooter,
+    Input,
+    Spinner,
+    Box,
+    Tooltip,
+    Code,
+    Divider,
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import type { GetServerSideProps } from "next";
@@ -61,24 +67,29 @@ function Token(props: TokenProps): JSX.Element {
         <Box borderWidth="1px" borderRadius="md" padding={5} width="100%">
             <HStack>
                 <VStack align="left">
-                    <Text as="b" fontSize="lg">{props.token.name}</Text>
-                    <Text>
-                        {props.token.last_used_at ?
-                            `Last used ${format(new Date(props.token.last_used_at))}` :
-                            "Never used"}
+                    <Text as="b" fontSize="lg">
+                        {props.token.name}
                     </Text>
                     <Text>
-                        {`Created ${format(new Date(props.token.created_at))}`}
+                        {props.token.last_used_at
+                            ? `Last used ${format(
+                                  new Date(props.token.last_used_at),
+                              )}`
+                            : "Never used"}
                     </Text>
+                    <Text>{`Created ${format(
+                        new Date(props.token.created_at),
+                    )}`}</Text>
                 </VStack>
                 <Spacer />
                 <Button onClick={props.onRevoke}>Revoke</Button>
             </HStack>
-            {props.token.token &&
+            {props.token.token && (
                 <VStack marginTop={5}>
                     <Divider />
                     <Text as="b" fontSize="lg">
-                        Make sure to copy your API token now. You won’t be able to see it again!
+                        Make sure to copy your API token now. You won’t be able
+                        to see it again!
                     </Text>
                     <HStack>
                         <Code padding={5}>{props.token.token}</Code>
@@ -87,7 +98,7 @@ function Token(props: TokenProps): JSX.Element {
                         </Button>
                     </HStack>
                 </VStack>
-            }
+            )}
         </Box>
     );
 }
@@ -99,9 +110,12 @@ function Tokens(): JSX.Element {
     const [tokens, setTokens] = useState<TokenType[]>([]);
 
     const [tokenName, setTokenName] = useState<string>("");
-    const updateInputValue = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-        setTokenName(event.target.value);
-    }, []);
+    const updateInputValue = useCallback(
+        (event: ChangeEvent<HTMLInputElement>) => {
+            setTokenName(event.target.value);
+        },
+        [],
+    );
 
     const createNewToken = useCallback(async () => {
         const token = randomstring.generate();
@@ -110,25 +124,33 @@ function Tokens(): JSX.Element {
             .single();
 
         if (data) {
-            setTokens(ts => [
-                { id: data["f1"], created_at: data["f2"], name: tokenName, token },
+            setTokens((ts) => [
+                {
+                    id: data["f1"],
+                    created_at: data["f2"],
+                    name: tokenName,
+                    token,
+                },
                 ...ts,
             ]);
         }
         setTokenName("");
         onClose();
     }, [onClose, tokenName]);
-    const revokeToken = useCallback((id: uuid) => {
-        return async () => {
-            await supabaseClient
-                .from<TokenType>("tokens")
-                .delete()
-                .match({ id });
+    const revokeToken = useCallback(
+        (id: uuid) => {
+            return async () => {
+                await supabaseClient
+                    .from<TokenType>("tokens")
+                    .delete()
+                    .match({ id });
 
-            // Remove the item
-            setTokens(tokens.filter((t) => t.id !== id));
-        };
-    }, [tokens]);
+                // Remove the item
+                setTokens(tokens.filter((t) => t.id !== id));
+            };
+        },
+        [tokens],
+    );
 
     useEffect(() => {
         supabaseClient
@@ -158,14 +180,24 @@ function Tokens(): JSX.Element {
                     shouldWrapChildren
                     isDisabled={tokens.length < 5}
                 >
-                    <Button rightIcon={<AddIcon />} onClick={onOpen} isDisabled={tokens.length >= 5}>
-                    New Token
+                    <Button
+                        rightIcon={<AddIcon />}
+                        onClick={onOpen}
+                        isDisabled={tokens.length >= 5}
+                    >
+                        New Token
                     </Button>
                 </Tooltip>
             </HStack>
             <VStack>
                 {tokens.map((t) => {
-                    return <Token key={t.id} token={t} onRevoke={revokeToken(t.id)} />;
+                    return (
+                        <Token
+                            key={t.id}
+                            token={t}
+                            onRevoke={revokeToken(t.id)}
+                        />
+                    );
                 })}
             </VStack>
             <Modal isOpen={isOpen} onClose={onClose}>
@@ -181,10 +213,17 @@ function Tokens(): JSX.Element {
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button variant="ghost" marginRight={3} onClick={onClose}>
+                        <Button
+                            variant="ghost"
+                            marginRight={3}
+                            onClick={onClose}
+                        >
                             Cancel
                         </Button>
-                        <Button onClick={createNewToken} isDisabled={tokenName.length === 0}>
+                        <Button
+                            onClick={createNewToken}
+                            isDisabled={tokenName.length === 0}
+                        >
                             Create
                         </Button>
                     </ModalFooter>
@@ -236,18 +275,22 @@ interface SettingPageProps {
 function SettingPage(props: SettingPageProps): JSX.Element {
     const router = useRouter();
 
-    const handleTabChange = useCallback((index: number): void => {
-        router.push(`/settings/${tabs[index]}`, undefined, { shallow: true });
-    }, [router]);
+    const handleTabChange = useCallback(
+        (index: number): void => {
+            router.push(`/settings/${tabs[index]}`, undefined, {
+                shallow: true,
+            });
+        },
+        [router],
+    );
 
     return (
         <Center>
-            <Tabs
-                onChange={handleTabChange}
-                defaultIndex={props.initialTab}
-            >
+            <Tabs onChange={handleTabChange} defaultIndex={props.initialTab}>
                 <TabList>
-                    {tabs.map((label) => <Tab key={label}>{humanizeString(label)}</Tab>)}
+                    {tabs.map((label) => (
+                        <Tab key={label}>{humanizeString(label)}</Tab>
+                    ))}
                 </TabList>
                 <TabPanels>
                     <TabPanel>
@@ -268,13 +311,19 @@ export default function Setting(props: SettingPageProps): JSX.Element {
     return (
         <>
             <Meta title="Settings" />
-            {user ? <SettingPage initialTab={props.initialTab} user={user} /> : <NeedAuth />}
+            {user ? (
+                <SettingPage initialTab={props.initialTab} user={user} />
+            ) : (
+                <NeedAuth />
+            )}
         </>
     );
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const initialTab = tabs.indexOf(context.resolvedUrl.split("/").slice(-1)[0] as TabsType);
+    const initialTab = tabs.indexOf(
+        context.resolvedUrl.split("/").slice(-1)[0] as TabsType,
+    );
     if (initialTab === -1) {
         return {
             notFound: true,

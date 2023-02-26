@@ -19,7 +19,11 @@ export default function Name(props: NameProps): JSX.Element {
                 package={{ name: props.package.name, version: "latest" }}
                 description={props.package.description}
             />
-            <PackageDetails package={props.package} versions={props.versions} dependents={props.dependents} />
+            <PackageDetails
+                package={props.package}
+                versions={props.versions}
+                dependents={props.dependents}
+            />
         </>
     );
 }
@@ -27,8 +31,7 @@ export default function Name(props: NameProps): JSX.Element {
 export const getStaticProps: GetStaticProps = async (context) => {
     const group = context.params?.group;
     const name = context.params?.name;
-    if (typeof group !== "string" ||
-        typeof name !== "string") {
+    if (typeof group !== "string" || typeof name !== "string") {
         return {
             notFound: true,
         };
@@ -46,7 +49,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         const latestPackage = packages[0];
         // Retrieve dependents
         const { data: dependents, error: e2 } = await supabaseClient
-            .rpc<Package>("get_dependents", { "depname": latestPackage.name })
+            .rpc<Package>("get_dependents", { depname: latestPackage.name })
             .select("*");
         if (e2) {
             console.error(e2);

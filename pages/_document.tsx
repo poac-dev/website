@@ -6,7 +6,9 @@ import Script from "next/script";
 import theme from "~/utils/theme";
 
 class MyDocument extends Document {
-    static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
+    static async getInitialProps(
+        ctx: DocumentContext,
+    ): Promise<DocumentInitialProps> {
         const initialProps = await Document.getInitialProps(ctx);
         return { ...initialProps };
     }
@@ -16,7 +18,9 @@ class MyDocument extends Document {
             <Html>
                 <Head />
                 <body>
-                    <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+                    <ColorModeScript
+                        initialColorMode={theme.config.initialColorMode}
+                    />
                     <Main />
                     <NextScript />
                 </body>

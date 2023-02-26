@@ -20,7 +20,9 @@ export default function Group(props: GroupProps): JSX.Element {
         <>
             <Meta title={props.user} />
             <VStack>
-                <Text>Packages owned by <Text as="b">{props.user}</Text></Text>
+                <Text>
+                    Packages owned by <Text as="b">{props.user}</Text>
+                </Text>
                 <SearchResult
                     packages={props.packages}
                     current_path={`/users/${props.user}`}
@@ -39,7 +41,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const perPage = context.query.perPage ? +context.query.perPage : PER_PAGE;
 
     let request = supabaseServerClient(context)
-        .rpc<PackageOverview>("get_owned_packages", { username: user }, { count: "exact" })
+        .rpc<PackageOverview>(
+            "get_owned_packages",
+            { username: user },
+            { count: "exact" },
+        )
         .select("id, name, version, description, edition");
 
     const startIndex = (page - 1) * perPage;
