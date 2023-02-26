@@ -15,11 +15,9 @@ type LinkCompoundType = LinkProps & {
 
 export const Link = forwardRef<LinkCompoundType, "a">(
     ({ children, href, isExternal, ...restProps }, ref) => (
-        <NextLink href={href} passHref>
-            <ChakraLink ref={ref} isExternal={isExternal} {...restProps}>
-                {children} {isExternal && <ExternalLinkIcon mx="2px" />}
-            </ChakraLink>
-        </NextLink>
+        <ChakraLink as={NextLink} href={href} ref={ref} isExternal={isExternal} {...restProps}>
+            {children} {isExternal && <ExternalLinkIcon mx="2px" />}
+        </ChakraLink>
     ),
 );
 
@@ -29,8 +27,6 @@ type LinkOverlayCompoundType = LinkOverlayProps & {
 
 export const LinkOverlay = forwardRef<LinkOverlayCompoundType, "a">(
     ({ href, ...restProps }, ref) => (
-        <NextLink href={href} passHref>
-            <ChakraLinkOverlay ref={ref} {...restProps} />
-        </NextLink>
+        <ChakraLinkOverlay as={NextLink} href={href} ref={ref} {...restProps} />
     ),
 );
