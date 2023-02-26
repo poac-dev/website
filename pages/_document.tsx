@@ -1,7 +1,6 @@
 import type { DocumentContext, DocumentInitialProps } from "next/document";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ColorModeScript } from "@chakra-ui/react";
-import Script from "next/script";
 
 import theme from "~/utils/theme";
 

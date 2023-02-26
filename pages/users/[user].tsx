@@ -1,5 +1,4 @@
 import type { GetServerSideProps } from "next";
-import { supabaseServerClient } from "@supabase/supabase-auth-helpers/nextjs";
 import { VStack, Text } from "@chakra-ui/react";
 
 import type { PackageOverview } from "~/utils/types";

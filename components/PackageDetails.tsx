@@ -31,7 +31,6 @@ import {
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import type { ReactElement } from "react";
 import { useEffect, useState } from "react";
-import { supabaseClient } from "@supabase/supabase-auth-helpers/nextjs";
 import { format } from "timeago.js";
 import { CalendarIcon, LinkIcon } from "@chakra-ui/icons";
 import ReactMarkdown from "react-markdown";
