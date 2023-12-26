@@ -1,5 +1,7 @@
 "use client";
 
+// TODO: metadata
+
 import {
     Pagination,
     Spacer,
@@ -12,7 +14,6 @@ import {
     TableRow,
 } from "@nextui-org/react";
 import NextLink from "next/link";
-// TODO: metadata
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PER_PAGE } from "../_lib/constants";
@@ -81,9 +82,7 @@ export default function Search() {
     );
 
     const handlePageChange = (page: number) => {
-        router.push(
-            "/search?q=" + query + "&page=" + page + "&perPage=" + perPage,
-        );
+        router.push(`/search?q=${query}&page=${page}&perPage=${perPage}`);
     };
 
     return (
@@ -104,14 +103,14 @@ export default function Search() {
                 <TableBody emptyContent={"No packages to display."}>
                     {packages.map((pkg) => (
                         <TableRow
-                            key={pkg["id"]}
+                            key={pkg.id}
                             as={NextLink}
-                            href={`/packages/${pkg["name"]}/${pkg["version"]}`}
+                            href={`/packages/${pkg.name}/${pkg.version}`}
                             className="hover:cursor-pointer"
                         >
-                            <TableCell>{pkg["name"]}</TableCell>
-                            <TableCell>{pkg["version"]}</TableCell>
-                            <TableCell>{pkg["edition"]}</TableCell>
+                            <TableCell>{pkg.name}</TableCell>
+                            <TableCell>{pkg.version}</TableCell>
+                            <TableCell>{pkg.edition}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
