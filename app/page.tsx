@@ -6,7 +6,7 @@ import { faDownload, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const metadata: Metadata = {
-    title: "Poac: Package Manager for C++",
+    title: "Poac - Intuitive and fast C++ package manager and build system",
 };
 
 const green = "#ABCF76";
@@ -28,7 +28,7 @@ export default function Home() {
                                 </h1>
                             </div>
                             <h2 className="my-4 text-lg lg:text-xl font-normal text-default-500">
-                                Intuitive, fast package manager and build
+                                Intuitive and fast package manager and build
                                 system.
                             </h2>
                             <div>
