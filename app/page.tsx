@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { Code } from "@nextui-org/react";
 import { Button, Link } from "@nextui-org/react";
-import NextLink from "next/link";
 import { faDownload, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { WindowActions } from "~/components/WindowActions";
