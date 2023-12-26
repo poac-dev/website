@@ -4,7 +4,6 @@
 import SearchResult from "./_components/SearchResult";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Center, Text } from "@chakra-ui/react";
 import { CircularProgress } from "@nextui-org/react";
 
 export default function Search() {
@@ -22,11 +21,14 @@ export default function Search() {
         fetch(`/search/api?q=${query}&page=${page}&perPage=${perPage}`)
             .then((response) => response.json())
             .then((data) => {
-                if (!data || data.packages.length === 0) {
+                if (!data) {
                     return;
                 }
                 setPackages(data.packages);
                 setTotalCount(data.packages_aggregate?.aggregate?.count);
+                setLoading(false);
+            })
+            .catch(() => {
                 setLoading(false);
             });
     }, [query, page, perPage]);
@@ -39,21 +41,21 @@ export default function Search() {
         );
     }
 
+    if (totalCount === 0) {
+        return (
+            <div className="flex flex-col items-center justify-center h-screen">
+                no packages found
+            </div>
+        );
+    }
+
     return (
-        <>
-            {packages && totalCount ? (
-                <SearchResult
-                    packages={packages}
-                    query={query}
-                    perPage={perPage}
-                    page={page}
-                    totalCount={totalCount}
-                />
-            ) : (
-                <Center>
-                    <Text>no packages found</Text>
-                </Center>
-            )}
-        </>
+        <SearchResult
+            packages={packages}
+            query={query}
+            perPage={perPage}
+            page={page}
+            totalCount={totalCount}
+        />
     );
 }

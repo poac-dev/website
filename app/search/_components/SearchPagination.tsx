@@ -17,7 +17,6 @@ import { useEffect } from "react";
 import type { Position } from "~/utils/types";
 
 interface SearchPaginationProps {
-    pathname: string;
     query?: Record<string, unknown>;
     setCurrentPos: Dispatch<SetStateAction<Position>>;
     perPage: number;
