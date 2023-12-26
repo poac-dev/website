@@ -37,7 +37,5 @@ export default async function Name({ params }: { params: Params }) {
         return semver.rcompare(a.version, b.version);
     });
 
-    return (
-        <Pack data={data} numVersion={data.packages.length} />
-    );
+    return <Pack data={data} numVersion={data.packages.length} />;
 }

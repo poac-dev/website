@@ -1,11 +1,18 @@
-import { GetPackageByNameAndVersionQuery, GetPackagesByNameQuery } from "~/graphql/graphql";
+import {
+    GetPackageByNameAndVersionQuery,
+    GetPackagesByNameQuery,
+} from "~/graphql/graphql";
 import { Chip, Link, Code, Divider } from "@nextui-org/react";
 import { format } from "timeago.js";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-export function Pack({ data, numVersion }: {
-    data: GetPackageByNameAndVersionQuery | GetPackagesByNameQuery, numVersion: number
+export function Pack({
+    data,
+    numVersion,
+}: {
+    data: GetPackageByNameAndVersionQuery | GetPackagesByNameQuery;
+    numVersion: number;
 }) {
     const pack = data.packages[0];
 
@@ -79,15 +86,11 @@ export function Pack({ data, numVersion }: {
             </div>
             <Divider />
             {pack.readme ? (
-                <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
-                    skipHtml
-                >
+                <ReactMarkdown remarkPlugins={[remarkGfm]} skipHtml>
                     {pack.readme}
                 </ReactMarkdown>
             ) : (
-                <p className="text-white/50"
-                >no readme found</p>
+                <p className="text-white/50">no readme found</p>
             )}
         </div>
     );
