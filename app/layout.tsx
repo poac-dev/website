@@ -1,4 +1,3 @@
-import { VStack } from "@chakra-ui/react";
 import { Analytics } from "@vercel/analytics/react";
 
 import Footer from "~/components/Footer";
@@ -16,11 +15,9 @@ export default function Layout({
                 className={"min-h-screen bg-background font-sans antialiased"}
             >
                 <Providers>
-                    <VStack spacing={10} align="right" margin={5}>
-                        <Header />
-                        {children}
-                        <Footer />
-                    </VStack>
+                    <Header />
+                    {children}
+                    <Footer />
                 </Providers>
                 <Analytics />
             </body>
