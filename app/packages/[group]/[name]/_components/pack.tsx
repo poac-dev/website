@@ -1,11 +1,11 @@
+import { Chip, Code, Divider, Link } from "@nextui-org/react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { format } from "timeago.js";
 import {
     GetPackageByNameAndVersionQuery,
     GetPackagesByNameQuery,
 } from "~/graphql/graphql";
-import { Chip, Link, Code, Divider } from "@nextui-org/react";
-import { format } from "timeago.js";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 
 export function Pack({
     data,

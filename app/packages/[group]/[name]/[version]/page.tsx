@@ -1,6 +1,6 @@
-import { getHasuraClient } from "~/app/_lib/hasuraClient";
-import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from "next";
+import { notFound } from "next/navigation";
+import { getHasuraClient } from "~/app/_lib/hasuraClient";
 import { Pack } from "../_components/pack";
 
 type Params = {
