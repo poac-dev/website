@@ -31,11 +31,10 @@ export default async function Name({ params }: { params: Params }) {
         return notFound();
     }
 
-    // pack.tsx will use the first element of the array.
     data.packages.sort((a, b) => {
         const semver = require("semver");
         return semver.rcompare(a.version, b.version);
     });
 
-    return <Pack data={data} numVersion={data.packages.length} />;
+    return <Pack pack={data.packages[0]} numVersion={data.packages.length} />;
 }

@@ -16,6 +16,7 @@ import {
 import NextLink from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { SearchPackagesQuery } from "~/graphql/graphql";
 import { PER_PAGE } from "../_lib/constants";
 
 export default function Search() {
@@ -35,18 +36,20 @@ export default function Search() {
     const numPages = Math.ceil(totalCount / perPage);
 
     const [loading, setLoading] = useState(true);
-    const [packages, setPackages] = useState([]);
+    const [packages, setPackages] = useState<SearchPackagesQuery["packages"]>(
+        [],
+    );
 
     useEffect(() => {
         setLoading(true);
         fetch(`/search/api?q=${query}&page=${page}&perPage=${perPage}`)
-            .then((response) => response.json())
-            .then((data) => {
+            .then((response) => response.json() as Promise<SearchPackagesQuery>)
+            .then((data: SearchPackagesQuery) => {
                 if (!data) {
                     return;
                 }
                 setPackages(data.packages);
-                setTotalCount(data.packages_aggregate?.aggregate?.count);
+                setTotalCount(data.packages_aggregate?.aggregate?.count ?? 0);
                 setLoading(false);
             })
             .catch(() => {

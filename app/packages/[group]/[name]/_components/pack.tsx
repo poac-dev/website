@@ -2,20 +2,15 @@ import { Chip, Code, Divider, Link } from "@nextui-org/react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { format } from "timeago.js";
-import {
-    GetPackageByNameAndVersionQuery,
-    GetPackagesByNameQuery,
-} from "~/graphql/graphql";
+import { GetPackageByNameAndVersionQuery } from "~/graphql/graphql";
 
 export function Pack({
-    data,
+    pack,
     numVersion,
 }: {
-    data: GetPackageByNameAndVersionQuery | GetPackagesByNameQuery;
+    pack: GetPackageByNameAndVersionQuery["packages"][0];
     numVersion: number;
 }) {
-    const pack = data.packages[0];
-
     return (
         <div className="flex flex-col justify-center items-center gap-4 m-4">
             <div className="flex justify-center items-center gap-4">
@@ -30,7 +25,7 @@ export function Pack({
                     <h4 className="text-lg font-bold">Versions</h4>
                 </div>
                 <div className="flex flex-row justify-center gap-1 max-w-[200px]">
-                    <Chip>{pack.metadata["dependencies"]?.length ?? 0}</Chip>
+                    <Chip>{pack.metadata.dependencies?.length ?? 0}</Chip>
                     <h4 className="text-lg font-bold">Dependencies</h4>
                 </div>
                 <div className="flex flex-col justify-center gap-1 max-w-[200px]">
@@ -50,36 +45,33 @@ export function Pack({
                     </p>
                     <Code>{`"${pack.name}" = "${pack.version}"`}</Code>
                 </div>
-                {pack.metadata["package"]["homepage"] && (
+                {pack.metadata.package.homepage && (
                     <div className="flex flex-col justify-center gap-1 max-w-[200px] break-all">
                         <h4 className="text-lg font-bold">Homepage</h4>
-                        <Link
-                            isExternal
-                            href={pack.metadata["package"]["homepage"]}
-                        >
-                            {pack.metadata["package"]["homepage"]}
+                        <Link isExternal href={pack.metadata.package.homepage}>
+                            {pack.metadata.package.homepage}
                         </Link>
                     </div>
                 )}
-                {pack.metadata["package"]["documentation"] && (
+                {pack.metadata.package.documentation && (
                     <div className="flex flex-col justify-center gap-1 max-w-[200px] break-all">
                         <h4 className="text-lg font-bold">Documentation</h4>
                         <Link
                             isExternal
-                            href={pack.metadata["package"]["documentation"]}
+                            href={pack.metadata.package.documentation}
                         >
-                            {pack.metadata["package"]["documentation"]}
+                            {pack.metadata.package.documentation}
                         </Link>
                     </div>
                 )}
-                {pack.metadata["package"]["repository"] && (
+                {pack.metadata.package.repository && (
                     <div className="flex flex-col justify-center gap-1 max-w-[200px] break-all">
                         <h4 className="text-lg font-bold">Repository</h4>
                         <Link
                             isExternal
-                            href={pack.metadata["package"]["repository"]}
+                            href={pack.metadata.package.repository}
                         >
-                            {pack.metadata["package"]["repository"]}
+                            {pack.metadata.package.repository}
                         </Link>
                     </div>
                 )}

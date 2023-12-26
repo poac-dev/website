@@ -35,7 +35,7 @@ export default async function Version({ params }: { params: Params }) {
 
     return (
         <Pack
-            data={data}
+            pack={data.packages[0]}
             numVersion={data.packages_aggregate?.aggregate?.count ?? 0}
         />
     );

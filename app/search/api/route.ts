@@ -15,7 +15,7 @@ const searchPackages = cache(
     },
 );
 
-export async function GET(request: Request) {
+export async function GET(request: Request): Promise<Response> {
     const { searchParams } = new URL(request.url);
     const name = searchParams.get("q") ?? "";
     const page = Number(searchParams.get("page") ?? 1);
