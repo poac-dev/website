@@ -30,7 +30,7 @@
     "humanize-string": "^3.0.0",
     "next": "14.0.3",
     "next-themes": "^0.2.1",
-    "nextjs-progressbar": "^0.0.16",
+    "next13-progressbar": "^1.1.1",
     "randomstring": "^1.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",

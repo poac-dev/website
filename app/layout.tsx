@@ -1,6 +1,5 @@
 import { VStack } from "@chakra-ui/react";
 import { Analytics } from "@vercel/analytics/react";
-// import NextNProgress from "nextjs-progressbar";
 
 import Footer from "~/components/Footer";
 import Header from "~/components/Header";
@@ -17,7 +16,6 @@ export default function Layout({
                 className={"min-h-screen bg-background font-sans antialiased"}
             >
                 <Providers>
-                    {/* <NextNProgress options={{ showSpinner: false }} /> */}
                     <VStack spacing={10} align="right" margin={5}>
                         <Header />
                         {children}
