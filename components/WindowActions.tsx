@@ -45,7 +45,11 @@ const windowIconStyles = tv({
     },
 });
 
-export const WindowActions: React.FC<WindowActionsProps> = ({ title, className, ...props }) => {
+export const WindowActions: React.FC<WindowActionsProps> = ({
+    title,
+    className,
+    ...props
+}) => {
     return (
         <div
             className={clsx(

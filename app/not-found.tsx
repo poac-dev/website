@@ -7,9 +7,7 @@ export const metadata: Metadata = {
 export default function Custom404(): JSX.Element {
     return (
         <div className="flex flex-col items-center justify-center h-screen">
-            <h1 className="font-bold m-4 text-6xl">
-                404
-            </h1>
+            <h1 className="font-bold m-4 text-6xl">404</h1>
             This page could not be found.
         </div>
     );

@@ -70,7 +70,10 @@ export default function Home() {
                         </div>
                         <div className="relative">
                             <WindowActions title="Terminal" />
-                            <Code className="text-md max-[600px]:text-xs shadow-medium p-4" style={{ backgroundColor: '#0D0B0B' }}>
+                            <Code
+                                className="text-md max-[600px]:text-xs shadow-medium p-4"
+                                style={{ backgroundColor: "#0D0B0B" }}
+                            >
                                 $ <span style={{ color: green }}>poac</span> new
                                 hello_world
                                 <br />

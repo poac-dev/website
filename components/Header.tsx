@@ -8,10 +8,7 @@ import {
 } from "@nextui-org/react";
 import NextLink from "next/link";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import {
-    faBookOpen,
-    faHeart,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBookOpen, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Logo } from "./Logo";
@@ -37,9 +34,12 @@ export default function Header(): JSX.Element {
                         className="p-1 text-default-600 dark:text-default-500"
                         href="https://doc.poac.dev"
                     >
-                        <FontAwesomeIcon className="text-default-600 dark:text-default-500" icon={faBookOpen} width={20} />
-                        &nbsp;
-                        Docs
+                        <FontAwesomeIcon
+                            className="text-default-600 dark:text-default-500"
+                            icon={faBookOpen}
+                            width={20}
+                        />
+                        &nbsp; Docs
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
@@ -49,7 +49,11 @@ export default function Header(): JSX.Element {
                         className="p-1"
                         href="https://github.com/poac-dev"
                     >
-                        <FontAwesomeIcon className="text-default-600 dark:text-default-500" icon={faGithub} width={20} />
+                        <FontAwesomeIcon
+                            className="text-default-600 dark:text-default-500"
+                            icon={faGithub}
+                            width={20}
+                        />
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
@@ -59,7 +63,11 @@ export default function Header(): JSX.Element {
                         className="group text-sm font-normal text-default-600 bg-default-400/20 dark:bg-default-500/20"
                         href="https://github.com/sponsors/ken-matsui"
                         startContent={
-                            <FontAwesomeIcon className="text-danger" icon={faHeart} width={15} />
+                            <FontAwesomeIcon
+                                className="text-danger"
+                                icon={faHeart}
+                                width={15}
+                            />
                         }
                         variant="flat"
                     >
