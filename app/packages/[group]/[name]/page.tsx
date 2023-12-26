@@ -1,67 +1,43 @@
-import type { GetStaticPaths, GetStaticProps } from "next";
-
 import { getHasuraClient } from "~/app/_lib/hasuraClient";
-import Meta from "~/components/Meta";
-import PackageDetails from "~/components/PackageDetails";
-import type { Package } from "~/utils/types";
+import { notFound } from "next/navigation";
+import type { Metadata, ResolvingMetadata } from "next";
+import { Pack } from "./_components/pack";
 
-interface NameProps {
-    package: Package;
-    numVersions: number;
+type Params = {
+    group: string;
+    name: string;
+};
+
+type Props = {
+    params: Params;
+    searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+    { params, searchParams }: Props,
+    parent: ResolvingMetadata,
+): Promise<Metadata> {
+    return {
+        title: `${params.group}/${params.name} (latest)`,
+    };
 }
 
-export default function Name(props: NameProps): JSX.Element {
-    return (
-        <>
-            <Meta
-                title={`${props.package.name} (latest)`}
-                package={{ name: props.package.name, version: "latest" }}
-                description={props.package.description}
-            />
-            <PackageDetails
-                package={props.package}
-                numVersions={props.numVersions}
-            />
-        </>
-    );
-}
-
-export const getStaticProps: GetStaticProps = async (context) => {
-    const group = context.params?.group;
-    const name = context.params?.name;
-    if (typeof group !== "string" || typeof name !== "string") {
-        return {
-            notFound: true,
-        };
-    }
-
+export default async function Name({ params }: { params: Params }) {
     const hasuraClient = getHasuraClient();
     const data = await hasuraClient.getPackagesByName({
-        name: `${group}/${name}`,
+        name: `${params.group}/${params.name}`,
     });
     if (!data || data.packages.length === 0) {
-        return {
-            notFound: true,
-        };
+        return notFound();
     }
 
+    // pack.tsx will use the first element of the array.
     data.packages.sort((a, b) => {
         const semver = require("semver");
         return semver.rcompare(a.version, b.version);
     });
 
-    return {
-        props: {
-            package: data.packages[0],
-            numVersions: data.packages.length,
-        },
-        revalidate: 86400, // one day; name specific page should not be updated frequently
-    };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-    return {
-        paths: [],
-        fallback: "blocking",
-    };
-};
+    return (
+        <Pack data={data} numVersion={data.packages.length} />
+    );
+}
