@@ -1,7 +1,7 @@
 import { cache } from "react";
 
 import { PER_PAGE } from "~/app/_lib/constants";
-import { getHasuraClient } from "../_lib/hasuraClient";
+import { getHasuraClient } from "../../_lib/hasuraClient";
 
 const searchPackages = cache(
     async (name: string, limit: number, offset: number) => {

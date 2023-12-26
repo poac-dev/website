@@ -1,6 +1,6 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
 
-import { getHasuraClient } from "~/app/search/_lib/hasuraClient";
+import { getHasuraClient } from "~/app/_lib/hasuraClient";
 import Meta from "~/components/Meta";
 import PackageDetails from "~/components/PackageDetails";
 import type { Package } from "~/utils/types";
