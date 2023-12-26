@@ -21,10 +21,7 @@ export default function Header(): JSX.Element {
         <Navbar>
             <NavbarBrand>
                 <NextLink href="/">
-                    <dev className="flex items-center">
-                        <Logo />
-                        <p className="font-bold text-inherit">Poac</p>
-                    </dev>
+                    <Logo />
                 </NextLink>
             </NavbarBrand>
             <NavbarContent justify="center">
