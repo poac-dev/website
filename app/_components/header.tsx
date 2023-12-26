@@ -11,9 +11,9 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faBookOpen, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { Logo } from "./Logo";
+import { Logo } from "./logo";
 
-export default function Header() {
+export function Header() {
     return (
         <Navbar>
             <NavbarBrand>

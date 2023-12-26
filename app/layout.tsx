@@ -1,8 +1,8 @@
 import { Analytics } from "@vercel/analytics/react";
 
-import Footer from "~/components/Footer";
-import Header from "~/components/Header";
-import { Providers } from "~/app/providers";
+import { Footer } from "./_components/footer";
+import { Header } from "./_components/header";
+import { Providers } from "./providers";
 
 import "./globals.css";
 

@@ -3,7 +3,8 @@ import { Code } from "@nextui-org/react";
 import { Button, Link } from "@nextui-org/react";
 import { faDownload, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { WindowActions } from "~/components/WindowActions";
+
+import { WindowActions } from "./_components/window-actions";
 
 export const metadata: Metadata = {
     title: "Poac - Intuitive and fast C++ package manager and build system",
