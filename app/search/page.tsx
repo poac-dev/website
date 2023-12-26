@@ -1,20 +1,20 @@
 "use client";
 
-// TODO: metadata
-import { useSearchParams, useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
 import {
+    Pagination,
     Spacer,
     Spinner,
     Table,
-    TableHeader,
-    TableColumn,
     TableBody,
-    TableRow,
     TableCell,
-    Pagination,
+    TableColumn,
+    TableHeader,
+    TableRow,
 } from "@nextui-org/react";
 import NextLink from "next/link";
+// TODO: metadata
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { PER_PAGE } from "../_lib/constants";
 
 export default function Search() {

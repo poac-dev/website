@@ -1,15 +1,15 @@
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faBookOpen, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+    Button,
+    Link,
     Navbar,
     NavbarBrand,
     NavbarContent,
     NavbarItem,
-    Link,
-    Button,
 } from "@nextui-org/react";
 import NextLink from "next/link";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faBookOpen, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Logo } from "./logo";
 import { SearchButton } from "./search";

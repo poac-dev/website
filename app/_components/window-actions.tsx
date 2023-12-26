@@ -25,9 +25,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+import { clsx } from "@nextui-org/shared-utils";
 import React from "react";
 import { tv } from "tailwind-variants";
-import { clsx } from "@nextui-org/shared-utils";
 
 export type WindowActionsProps = {
     title?: string;

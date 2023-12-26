@@ -1,10 +1,10 @@
 "use client";
 
-import { Input } from "@nextui-org/react";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { Input } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export function SearchButton() {
     const [value, setValue] = useState("");
