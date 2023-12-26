@@ -1,3 +1,5 @@
+"use client";
+
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
     Center,
@@ -9,16 +11,15 @@ import {
     useColorMode,
     useColorModeValue,
 } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 import { Link, LinkOverlay } from "~/components/Link";
 import Search from "~/components/Search";
 
 export default function Header(): JSX.Element {
-    const router = useRouter();
-    const { toggleColorMode } = useColorMode();
-    const colorModeIcon = useColorModeValue(<MoonIcon />, <SunIcon />);
-    const logoName = useColorModeValue("/logo-black.svg", "/logo-white.svg");
+    const pathname = usePathname();
+    // const { toggleColorMode } = useColorMode();
+    const logoName = "/logo-white.svg";
 
     return (
         <Flex>
@@ -28,7 +29,7 @@ export default function Header(): JSX.Element {
                     <Image width="80px" src={logoName} alt="Logo" />
                 </LinkOverlay>
             </LinkBox>
-            {router.pathname === "/" ? (
+            {pathname === "/" ? (
                 <>
                     <Spacer />
                     <Center>
@@ -40,12 +41,6 @@ export default function Header(): JSX.Element {
             ) : (
                 <Search />
             )}
-            <IconButton
-                onClick={toggleColorMode}
-                aria-label="Toggle theme"
-                icon={colorModeIcon}
-                marginRight={5}
-            />
             <Spacer />
         </Flex>
     );

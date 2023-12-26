@@ -1,3 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-size: 16px;
+  padding: 0px !important;
+  overflow-x: hidden;
+  scroll-padding-top: 64px;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+}
+
+
 html,
 body {
   padding: 0;

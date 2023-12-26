@@ -1,3 +1,5 @@
+"use client";
+
 import { SearchIcon } from "@chakra-ui/icons";
 import {
     Container,
@@ -5,12 +7,14 @@ import {
     InputGroup,
     InputRightElement,
 } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import type { ChangeEvent, KeyboardEvent } from "react";
 import { useCallback, useEffect, useState } from "react";
 
 export default function Search(): JSX.Element {
     const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
 
     const [query, setQuery] = useState<string>("");
     const updateInputValue = useCallback(
@@ -24,8 +28,7 @@ export default function Search(): JSX.Element {
         async (e: KeyboardEvent<HTMLInputElement>): Promise<void> => {
             if (query.length !== 0 && e.key === "Enter") {
                 e.preventDefault();
-                await router.push({
-                    pathname: "/search",
+                await router.push("/search", {
                     query: { query },
                 });
             }
@@ -33,15 +36,16 @@ export default function Search(): JSX.Element {
         [query, router],
     );
 
-    useEffect(() => {
-        if (
-            router.pathname === "/search" &&
-            router.query.query &&
-            typeof router.query.query === "string"
-        ) {
-            setQuery(router.query.query);
-        }
-    }, [router.pathname, router.query.query]);
+    // useEffect(() => {
+    //     if (
+    //         pathname === "/search" &&
+    //         searchParams[0].query
+    //         router.query.query &&
+    //         typeof router.query.query === "string"
+    //     ) {
+    //         setQuery(router.query.query);
+    //     }
+    // }, [pathname, searchParams]);
 
     return (
         <Container>

@@ -1,3 +1,5 @@
+"use client";
+
 import { Divider, HStack, LinkBox, VStack } from "@chakra-ui/react";
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";

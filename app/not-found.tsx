@@ -1,11 +1,13 @@
 import { Center, HStack, Heading } from "@chakra-ui/react";
+import { Metadata } from 'next';
 
-import Meta from "~/components/Meta";
+export const metadata: Metadata = {
+    title: "404: Not Found",
+};
 
 export default function Custom404(): JSX.Element {
     return (
         <>
-            <Meta title="404: Not Found" />
             <Center height="50px">
                 <HStack>
                     <Heading>404</Heading>

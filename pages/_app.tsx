@@ -5,12 +5,11 @@ import NextNProgress from "nextjs-progressbar";
 import "../styles/globals.css";
 
 import Layout from "~/components/Layout";
-import theme from "~/utils/theme";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <>
-            <ChakraProvider theme={theme}>
+            <ChakraProvider>
                 <NextNProgress options={{ showSpinner: false }} />
                 <Layout>
                     <Component {...pageProps} />

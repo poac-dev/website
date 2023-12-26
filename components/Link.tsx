@@ -1,3 +1,4 @@
+"use client";
 // ref: https://github.com/chakra-ui/chakra-ui/discussions/3152#discussioncomment-309850
 
 import { ExternalLinkIcon } from "@chakra-ui/icons";
