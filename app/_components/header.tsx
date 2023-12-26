@@ -12,6 +12,7 @@ import { faBookOpen, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Logo } from "./logo";
+import { SearchButton } from "./search";
 
 export function Header() {
     return (
@@ -23,7 +24,7 @@ export function Header() {
             </NavbarBrand>
             <NavbarContent justify="center">
                 <NavbarItem>
-                    <Link href="/search">Browse all packages</Link>
+                    <SearchButton />
                 </NavbarItem>
             </NavbarContent>
             <NavbarContent className="hidden sm:flex gap-4" justify="end">

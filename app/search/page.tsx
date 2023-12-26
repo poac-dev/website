@@ -1,3 +1,5 @@
+"use client";
+
 import { Center, Text } from "@chakra-ui/react";
 import type { GetServerSideProps } from "next";
 
