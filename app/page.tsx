@@ -14,7 +14,7 @@ const brightGreen = "#C3E88D";
 
 export default function Home() {
     return (
-        <main className={"container mx-auto max-w-7xl px-6 flex-grow"}>
+        <main className="container mx-auto max-w-7xl px-6 flex-grow">
             <section className="flex flex-col items-center justify-center">
                 <section className="flex relative overflow-hidden lg:overflow-visible w-full flex-nowrap justify-between items-center h-[calc(100vh_-_64px)] 2xl:h-[calc(84vh_-_64px)]">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
