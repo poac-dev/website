@@ -4,8 +4,15 @@ import {
     NavbarContent,
     NavbarItem,
     Link,
+    Button,
 } from "@nextui-org/react";
 import NextLink from "next/link";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import {
+    faBookOpen,
+    faHeart,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Logo } from "./Logo";
 
@@ -20,29 +27,47 @@ export default function Header(): JSX.Element {
                     </dev>
                 </NextLink>
             </NavbarBrand>
-            <NavbarContent className="hidden sm:flex gap-4" justify="center">
+            <NavbarContent justify="center">
                 <NavbarItem>
-                    <Link color="foreground" href="https://doc.poac.dev">
+                    <Link href="/search">Browse all packages</Link>
+                </NavbarItem>
+            </NavbarContent>
+            <NavbarContent className="hidden sm:flex gap-4" justify="end">
+                <NavbarItem>
+                    <Link
+                        isExternal
+                        aria-label="Docs"
+                        className="p-1 text-default-600 dark:text-default-500"
+                        href="https://doc.poac.dev"
+                    >
+                        <FontAwesomeIcon className="text-default-600 dark:text-default-500" icon={faBookOpen} width={20} />
+                        &nbsp;
                         Docs
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Link color="foreground" href="https://github.com/poac-dev">
-                        GitHub
+                    <Link
+                        isExternal
+                        aria-label="Github"
+                        className="p-1"
+                        href="https://github.com/poac-dev"
+                    >
+                        <FontAwesomeIcon className="text-default-600 dark:text-default-500" icon={faGithub} width={20} />
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Link
-                        color="foreground"
+                    <Button
+                        isExternal
+                        as={Link}
+                        className="group text-sm font-normal text-default-600 bg-default-400/20 dark:bg-default-500/20"
                         href="https://github.com/sponsors/ken-matsui"
+                        startContent={
+                            <FontAwesomeIcon className="text-danger" icon={faHeart} width={15} />
+                        }
+                        variant="flat"
                     >
                         Sponsor
-                    </Link>
-                </NavbarItem>
-            </NavbarContent>
-            <NavbarContent justify="end">
-                <NavbarItem>
-                    <Link href="/search">Browse all packages</Link>
+                    </Button>
                 </NavbarItem>
             </NavbarContent>
         </Navbar>

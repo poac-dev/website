@@ -1,9 +1,10 @@
 import { Metadata } from "next";
 import { Code } from "@nextui-org/react";
-import { Button } from "@nextui-org/react";
+import { Button, Link } from "@nextui-org/react";
 import NextLink from "next/link";
 import { faDownload, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { WindowActions } from "~/components/WindowActions";
 
 export const metadata: Metadata = {
     title: "Poac - Intuitive and fast C++ package manager and build system",
@@ -33,7 +34,8 @@ export default function Home() {
                             </h2>
                             <div>
                                 <Button
-                                    as={NextLink}
+                                    isExternal
+                                    as={Link}
                                     className="w-full md:w-auto"
                                     color="primary"
                                     href="https://github.com/poac-dev/poac#installation"
@@ -49,7 +51,8 @@ export default function Home() {
                                     Install Poac
                                 </Button>
                                 <Button
-                                    as={NextLink}
+                                    isExternal
+                                    as={Link}
                                     className="mx-0 my-4 md:mx-4 md:my-0 w-full md:w-auto"
                                     href="https://doc.poac.dev/guide"
                                     radius="full"
@@ -66,7 +69,8 @@ export default function Home() {
                             </div>
                         </div>
                         <div className="relative">
-                            <Code className="text-md max-[600px]:text-xs">
+                            <WindowActions title="Terminal" />
+                            <Code className="text-md max-[600px]:text-xs shadow-medium p-4" style={{ backgroundColor: '#0D0B0B' }}>
                                 $ <span style={{ color: green }}>poac</span> new
                                 hello_world
                                 <br />
