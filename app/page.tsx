@@ -1,21 +1,132 @@
-import { HomePage } from './home-page';
-import { Metadata } from 'next';
+import { Metadata } from "next";
+import { Code } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
+import NextLink from "next/link";
+import { faDownload, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const metadata: Metadata = {
     title: "Poac: Package Manager for C++",
 };
 
+const green = "#ABCF76";
+const brightGreen = "#C3E88D";
+
 export default function Home() {
     return (
-        <main className="container mx-auto max-w-7xl px-6 flex-grow">
+        <main className={"container mx-auto max-w-7xl px-6 flex-grow"}>
             <section className="flex flex-col items-center justify-center">
-                <div className="text-center">
-                    <div className="inline-block">
-                        <h1 className="text-3xl lg:text-6xl">A Poac's comminity registry</h1>
-                        {/* <HomePage /> */}
+                <section className="flex relative overflow-hidden lg:overflow-visible w-full flex-nowrap justify-between items-center h-[calc(100vh_-_64px)] 2xl:h-[calc(84vh_-_64px)]">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                        <div className="text-center leading-8 md:leading-10 md:text-left">
+                            <div className="inline-block">
+                                <h1 className="font-bold text-3xl lg:text-6xl">
+                                    <span className="from-[#51DEEC] to-[#3023AE] bg-clip-text text-transparent bg-gradient-to-b">
+                                        Effortlessly
+                                    </span>{" "}
+                                    build and share your C++ packages.
+                                </h1>
+                            </div>
+                            <h2 className="my-4 text-lg lg:text-xl font-normal text-default-500">
+                                Intuitive, fast package manager and build
+                                system.
+                            </h2>
+                            <div>
+                                <Button
+                                    as={NextLink}
+                                    className="w-full md:w-auto"
+                                    color="primary"
+                                    href="https://github.com/poac-dev/poac#installation"
+                                    radius="full"
+                                    size="lg"
+                                    startContent={
+                                        <FontAwesomeIcon
+                                            icon={faDownload}
+                                            width={15}
+                                        />
+                                    }
+                                >
+                                    Install Poac
+                                </Button>
+                                <Button
+                                    as={NextLink}
+                                    className="mx-0 my-4 md:mx-4 md:my-0 w-full md:w-auto"
+                                    href="https://doc.poac.dev/guide"
+                                    radius="full"
+                                    size="lg"
+                                    endContent={
+                                        <FontAwesomeIcon
+                                            icon={faArrowRight}
+                                            width={15}
+                                        />
+                                    }
+                                >
+                                    Getting Started
+                                </Button>
+                            </div>
+                        </div>
+                        <div className="relative">
+                            <Code className="text-md max-[600px]:text-xs">
+                                $ <span style={{ color: green }}>poac</span> new
+                                hello_world
+                                <br />
+                                &nbsp;&nbsp;&nbsp;
+                                <span
+                                    className="font-bold"
+                                    style={{ color: brightGreen }}
+                                >
+                                    Created
+                                </span>{" "}
+                                binary (application) `hello_world` package
+                                <br />
+                                <br />$ <span style={{ color: green }}>cd</span>{" "}
+                                hello_world
+                                <br />
+                                <br />${" "}
+                                <span style={{ color: green }}>poac</span> run
+                                <br />
+                                &nbsp;
+                                <span
+                                    className="font-bold"
+                                    style={{ color: brightGreen }}
+                                >
+                                    Compiling
+                                </span>{" "}
+                                src/main.cc
+                                <br />
+                                &nbsp;&nbsp;&nbsp;
+                                <span
+                                    className="font-bold"
+                                    style={{ color: brightGreen }}
+                                >
+                                    Linking
+                                </span>{" "}
+                                hello_world
+                                <br />
+                                &nbsp;&nbsp;
+                                <span
+                                    className="font-bold"
+                                    style={{ color: brightGreen }}
+                                >
+                                    Finished
+                                </span>{" "}
+                                debug target(s) in 1.28333s
+                                <br />
+                                &nbsp;&nbsp;&nbsp;
+                                <span
+                                    className="font-bold"
+                                    style={{ color: brightGreen }}
+                                >
+                                    Running
+                                </span>{" "}
+                                poac-out/debug/hello_world
+                                <br />
+                                Hello, world!
+                            </Code>
+                        </div>
                     </div>
-                </div>
+                </section>
             </section>
         </main>
-    )
-};
+    );
+}

@@ -1,5 +1,5 @@
 import { Center, HStack, Heading } from "@chakra-ui/react";
-import { Metadata } from 'next';
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "404: Not Found",

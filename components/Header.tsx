@@ -1,47 +1,50 @@
-"use client";
-
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
-    Center,
-    Flex,
-    IconButton,
-    Image,
-    LinkBox,
-    Spacer,
-    useColorMode,
-    useColorModeValue,
-} from "@chakra-ui/react";
-import { usePathname } from "next/navigation";
+    Navbar,
+    NavbarBrand,
+    NavbarContent,
+    NavbarItem,
+    Link,
+} from "@nextui-org/react";
+import NextLink from "next/link";
 
-import { Link, LinkOverlay } from "~/components/Link";
-import Search from "~/components/Search";
+import { Logo } from "./Logo";
 
 export default function Header(): JSX.Element {
-    const pathname = usePathname();
-    // const { toggleColorMode } = useColorMode();
-    const logoName = "/logo-white.svg";
-
     return (
-        <Flex>
-            <Spacer />
-            <LinkBox>
-                <LinkOverlay href="/">
-                    <Image width="80px" src={logoName} alt="Logo" />
-                </LinkOverlay>
-            </LinkBox>
-            {pathname === "/" ? (
-                <>
-                    <Spacer />
-                    <Center>
-                        <Link href="/search" marginRight={5}>
-                            Browse all packages
-                        </Link>
-                    </Center>
-                </>
-            ) : (
-                <Search />
-            )}
-            <Spacer />
-        </Flex>
+        <Navbar>
+            <NavbarBrand>
+                <NextLink href="/">
+                    <dev className="flex items-center">
+                        <Logo />
+                        <p className="font-bold text-inherit">Poac</p>
+                    </dev>
+                </NextLink>
+            </NavbarBrand>
+            <NavbarContent className="hidden sm:flex gap-4" justify="center">
+                <NavbarItem>
+                    <Link color="foreground" href="https://doc.poac.dev">
+                        Docs
+                    </Link>
+                </NavbarItem>
+                <NavbarItem>
+                    <Link color="foreground" href="https://github.com/poac-dev">
+                        GitHub
+                    </Link>
+                </NavbarItem>
+                <NavbarItem>
+                    <Link
+                        color="foreground"
+                        href="https://github.com/sponsors/ken-matsui"
+                    >
+                        Sponsor
+                    </Link>
+                </NavbarItem>
+            </NavbarContent>
+            <NavbarContent justify="end">
+                <NavbarItem>
+                    <Link href="/search">Browse all packages</Link>
+                </NavbarItem>
+            </NavbarContent>
+        </Navbar>
     );
 }
