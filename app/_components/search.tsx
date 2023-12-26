@@ -10,7 +10,7 @@ export function SearchButton() {
     const [value, setValue] = useState("");
     const router = useRouter();
 
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === "Enter") {
             router.push(`/search?q=${value}`);
         }
