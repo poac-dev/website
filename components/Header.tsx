@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Logo } from "./Logo";
 
-export default function Header(): JSX.Element {
+export default function Header() {
     return (
         <Navbar>
             <NavbarBrand>
