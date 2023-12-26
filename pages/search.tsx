@@ -1,10 +1,10 @@
-import type { GetServerSideProps } from "next";
 import { Center, Text } from "@chakra-ui/react";
+import type { GetServerSideProps } from "next";
 
-import type { PackageOverview } from "~/utils/types";
-import SearchResult from "~/components/SearchResult";
 import Meta from "~/components/Meta";
+import SearchResult from "~/components/SearchResult";
 import { BASE_API_URL, PER_PAGE } from "~/utils/constants";
+import type { PackageOverview } from "~/utils/types";
 
 interface SearchProps {
     packages?: PackageOverview[];

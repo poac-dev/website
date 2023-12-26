@@ -1,4 +1,4 @@
-import { Package, User } from "~/utils/types";
+import { CalendarIcon, LinkIcon } from "@chakra-ui/icons";
 import {
     Avatar,
     Button,
@@ -6,23 +6,23 @@ import {
     HStack,
     StackDivider,
     Text,
-    useClipboard,
     VStack,
+    useClipboard,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { BASE_API_URL } from "~/utils/constants";
-import InfoColumnItem from "~/components/InfoColumnItem";
-import { CalendarIcon, LinkIcon } from "@chakra-ui/icons";
-import { format } from "timeago.js";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import {
     faClipboard,
     faClipboardCheck,
     faFileCode,
     faScaleBalanced,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
+import { format } from "timeago.js";
+import InfoColumnItem from "~/components/InfoColumnItem";
 import { Link } from "~/components/Link";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { BASE_API_URL } from "~/utils/constants";
+import { Package, User } from "~/utils/types";
 
 interface Props {
     package: Package;

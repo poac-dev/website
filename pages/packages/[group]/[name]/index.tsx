@@ -1,9 +1,9 @@
-import type { GetStaticProps, GetStaticPaths } from "next";
+import type { GetStaticPaths, GetStaticProps } from "next";
 
-import type { Package } from "~/utils/types";
-import PackageDetails from "~/components/PackageDetails";
 import Meta from "~/components/Meta";
+import PackageDetails from "~/components/PackageDetails";
 import { BASE_API_URL } from "~/utils/constants";
+import type { Package } from "~/utils/types";
 
 interface NameProps {
     package: Package;

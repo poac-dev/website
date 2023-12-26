@@ -1,7 +1,7 @@
 import {
     Code,
-    Heading,
     HStack,
+    Heading,
     ListItem,
     Tab,
     TabList,
@@ -13,21 +13,21 @@ import {
     UnorderedList,
     VStack,
 } from "@chakra-ui/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faArrowUpRightFromSquare,
     faFileLines,
     faLink,
     faTags,
 } from "@fortawesome/free-solid-svg-icons";
-import ReactMarkdown from "react-markdown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
+import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 import { CodeBlock } from "~/components/CodeBlock";
-import type { Package } from "~/utils/types";
-import { Link } from "~/components/Link";
 import InfoColumn from "~/components/InfoColumn";
+import { Link } from "~/components/Link";
+import type { Package } from "~/utils/types";
 
 interface InfoMainProps {
     package: Package;
