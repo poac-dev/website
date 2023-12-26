@@ -15,6 +15,7 @@ import {
     Pagination,
 } from "@nextui-org/react";
 import NextLink from "next/link";
+import { PER_PAGE } from "../_lib/constants";
 
 export default function Search() {
     const router = useRouter();
@@ -22,7 +23,7 @@ export default function Search() {
     const searchParams = useSearchParams();
     const query = searchParams?.get("q") ?? "";
     const page = Number(searchParams?.get("page") ?? 1);
-    const perPage = Number(searchParams?.get("perPage") ?? 10);
+    const perPage = Number(searchParams?.get("perPage") ?? PER_PAGE);
     const [totalCount, setTotalCount] = useState(0);
 
     const currentLast = page * perPage;
