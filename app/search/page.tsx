@@ -14,6 +14,7 @@ import {
     TableCell,
     Pagination,
 } from "@nextui-org/react";
+import NextLink from "next/link";
 
 export default function Search() {
     const router = useRouter();
@@ -101,7 +102,12 @@ export default function Search() {
                 </TableHeader>
                 <TableBody emptyContent={"No packages to display."}>
                     {packages.map((pkg) => (
-                        <TableRow key={pkg["id"]}>
+                        <TableRow
+                            key={pkg["id"]}
+                            as={NextLink}
+                            href={`/packages/${pkg["name"]}/${pkg["version"]}`}
+                            className="hover:cursor-pointer"
+                        >
                             <TableCell>{pkg["name"]}</TableCell>
                             <TableCell>{pkg["version"]}</TableCell>
                             <TableCell>{pkg["edition"]}</TableCell>
