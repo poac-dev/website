@@ -61,11 +61,11 @@ function User(props: UserProps): JSX.Element {
                 <Center>
                     <Avatar
                         size="xs"
-                        name={props.user.user_metadata["name"]}
-                        src={props.user.user_metadata["avatar_url"]}
+                        name={props.user.user_metadata.name}
+                        src={props.user.user_metadata.avatar_url}
                         marginRight={1}
                     />
-                    <Text>{props.user.user_metadata["name"]}</Text>
+                    <Text>{props.user.user_metadata.name}</Text>
                     <ChevronDownIcon />
                 </Center>
             </MenuButton>

@@ -83,12 +83,12 @@ export default function InfoColumn(props: Props): JSX.Element {
             .then((res) => {
                 res.json().then((data) => {
                     const users: User[] = [];
-                    for (const rawUser of data["data"]) {
+                    for (const rawUser of data.data) {
                         users.push({
-                            id: rawUser["id"],
-                            name: rawUser["name"],
-                            user_name: rawUser["user_name"],
-                            avatar_url: rawUser["avatar_url"],
+                            id: rawUser.id,
+                            name: rawUser.name,
+                            user_name: rawUser.user_name,
+                            avatar_url: rawUser.avatar_url,
                         });
                     }
                     setOwners(users);
@@ -101,32 +101,28 @@ export default function InfoColumn(props: Props): JSX.Element {
         <VStack spacing={5} maxWidth={300} divider={<StackDivider />}>
             <Metadata package={props.package} />
             <Install package={props.package} />
-            {props.package.metadata["package"]["homepage"] && (
+            {props.package.metadata.package.homepage && (
                 <InfoColumnItem title="Homepage">
                     <HStack>
                         <LinkIcon />
                         <Link
-                            href={props.package.metadata["package"]["homepage"]}
+                            href={props.package.metadata.package.homepage}
                             isExternal
                         >
-                            {props.package.metadata["package"]["homepage"]}
+                            {props.package.metadata.package.homepage}
                         </Link>
                     </HStack>
                 </InfoColumnItem>
             )}
-            {props.package.metadata["package"]["documentation"] && (
+            {props.package.metadata.package.documentation && (
                 <InfoColumnItem title="Documentation">
                     <HStack>
                         <FontAwesomeIcon icon={faFileCode} width={15} />
                         <Link
-                            href={
-                                props.package.metadata["package"][
-                                    "documentation"
-                                ]
-                            }
+                            href={props.package.metadata.package.documentation}
                             isExternal
                         >
-                            {props.package.metadata["package"]["documentation"]}
+                            {props.package.metadata.package.documentation}
                         </Link>
                     </HStack>
                 </InfoColumnItem>

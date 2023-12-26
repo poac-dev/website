@@ -43,19 +43,19 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const data = await res.json();
 
     const packages: Package[] = [];
-    for (const rawPkg of data["data"]) {
+    for (const rawPkg of data.data) {
         const pkg: Package = {
-            id: rawPkg["id"],
-            published_at: rawPkg["published_at"],
-            name: rawPkg["name"],
-            version: rawPkg["version"],
-            description: rawPkg["description"],
-            edition: rawPkg["edition"],
-            authors: rawPkg["authors"],
-            repository: rawPkg["repository"],
-            license: rawPkg["license"],
-            metadata: rawPkg["metadata"],
-            readme: rawPkg["readme"],
+            id: rawPkg.id,
+            published_at: rawPkg.published_at,
+            name: rawPkg.name,
+            version: rawPkg.version,
+            description: rawPkg.description,
+            edition: rawPkg.edition,
+            authors: rawPkg.authors,
+            repository: rawPkg.repository,
+            license: rawPkg.license,
+            metadata: rawPkg.metadata,
+            readme: rawPkg.readme,
         };
         packages.push(pkg);
     }
@@ -69,19 +69,19 @@ export const getStaticProps: GetStaticProps = async (context) => {
         const data = await res.json();
 
         const dependents: Package[] = [];
-        for (const rawPkg of data["data"]) {
+        for (const rawPkg of data.data) {
             const pkg: Package = {
-                id: rawPkg["id"],
-                published_at: rawPkg["published_at"],
-                name: rawPkg["name"],
-                version: rawPkg["version"],
-                description: rawPkg["description"],
-                edition: rawPkg["edition"],
-                authors: rawPkg["authors"],
-                repository: rawPkg["repository"],
-                license: rawPkg["license"],
-                metadata: rawPkg["metadata"],
-                readme: rawPkg["readme"],
+                id: rawPkg.id,
+                published_at: rawPkg.published_at,
+                name: rawPkg.name,
+                version: rawPkg.version,
+                description: rawPkg.description,
+                edition: rawPkg.edition,
+                authors: rawPkg.authors,
+                repository: rawPkg.repository,
+                license: rawPkg.license,
+                metadata: rawPkg.metadata,
+                readme: rawPkg.readme,
             };
             dependents.push(pkg);
         }

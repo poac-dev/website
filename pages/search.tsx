@@ -57,14 +57,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const data = await res.json();
 
     const packages: PackageOverview[] = [];
-    for (const rawPkg of data["data"]["results"]) {
+    for (const rawPkg of data.data.results) {
         const pkg: PackageOverview = {
-            id: rawPkg["id"],
-            published_at: rawPkg["published_at"],
-            name: rawPkg["name"],
-            version: rawPkg["version"],
-            edition: rawPkg["edition"],
-            description: rawPkg["description"],
+            id: rawPkg.id,
+            published_at: rawPkg.published_at,
+            name: rawPkg.name,
+            version: rawPkg.version,
+            edition: rawPkg.edition,
+            description: rawPkg.description,
         };
         packages.push(pkg);
     }
@@ -75,7 +75,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             query,
             perPage,
             page,
-            totalCount: data["data"]["total_count"],
+            totalCount: data.data.total_count,
         },
     };
 };

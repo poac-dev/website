@@ -58,12 +58,12 @@ function InfoMain(props: InfoMainProps): JSX.Element {
                             icon={faArrowUpRightFromSquare}
                             width={15}
                         />
-                        {props.package.metadata["dependencies"] ? (
+                        {props.package.metadata.dependencies ? (
                             // @ts-ignore
                             <Code>
                                 {
                                     Object.keys(
-                                        props.package.metadata["dependencies"],
+                                        props.package.metadata.dependencies,
                                     ).length
                                 }
                             </Code>
@@ -112,10 +112,10 @@ function InfoMain(props: InfoMainProps): JSX.Element {
                     </UnorderedList>
                 </TabPanel>
                 <TabPanel>
-                    {props.package.metadata["dependencies"] ? (
+                    {props.package.metadata.dependencies ? (
                         <UnorderedList>
                             {Object.entries(
-                                props.package.metadata["dependencies"],
+                                props.package.metadata.dependencies,
                             ).map(([name, ver]) => (
                                 // @ts-ignore
                                 <ListItem key={name}>
