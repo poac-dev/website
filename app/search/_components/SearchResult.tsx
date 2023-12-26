@@ -1,11 +1,13 @@
+"use client";
+
 import { Center, HStack, Select, Spacer, Text, VStack } from "@chakra-ui/react";
 import { faListOl } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { ChangeEvent } from "react";
 import { useCallback, useState } from "react";
 
-import Package from "~/components/Package";
-import SearchPagination from "~/components/SearchPagination";
+import Package from "./Package";
+import SearchPagination from "./SearchPagination";
 import type { PackageOverview, Position } from "~/utils/types";
 
 const perPageSelections = [5, 10, 30, 50, 100] as const;
@@ -13,7 +15,6 @@ const perPageSelections = [5, 10, 30, 50, 100] as const;
 interface SearchResultProps {
     packages: PackageOverview[];
     query?: string;
-    current_path: string;
     perPage: number;
     page: number;
     totalCount: number;
@@ -69,7 +70,6 @@ export default function SearchResult(props: SearchResultProps): JSX.Element {
                     ))}
                 </VStack>
                 <SearchPagination
-                    pathname={props.current_path}
                     query={props.query ? { query: props.query } : undefined}
                     setCurrentPos={setCurrentPos}
                     perPage={perPage}

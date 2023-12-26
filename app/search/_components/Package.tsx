@@ -1,3 +1,5 @@
+"use client";
+
 import {
     HStack,
     Heading,
@@ -8,7 +10,7 @@ import {
     VStack,
 } from "@chakra-ui/react";
 
-import { LinkOverlay } from "~/components/Link";
+// import { LinkOverlay } from "~/components/Link";
 import type { PackageOverview } from "~/utils/types";
 
 interface PackageProps {
@@ -29,11 +31,11 @@ export default function Package(props: PackageProps): JSX.Element {
                 <VStack align="left">
                     <HStack spacing={3}>
                         <Heading size="sm" my="2">
-                            <LinkOverlay
+                            {/* <LinkOverlay
                                 href={`/packages/${props.package.name}`}
                             >
                                 {props.package.name}
-                            </LinkOverlay>
+                            </LinkOverlay> */}
                         </Heading>
                         <Text>v{props.package.version}</Text>
                     </HStack>

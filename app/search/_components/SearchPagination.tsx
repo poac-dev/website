@@ -1,3 +1,5 @@
+"use client";
+
 import {
     Pagination,
     PaginationContainer,
@@ -8,7 +10,7 @@ import {
     usePagination,
 } from "@ajna/pagination";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { useRouter } from "next/router";
+import { useRouter, usePathname } from "next/navigation";
 import type { Dispatch, SetStateAction } from "react";
 import { useEffect } from "react";
 
@@ -27,6 +29,7 @@ export default function SearchPagination(
     props: SearchPaginationProps,
 ): JSX.Element {
     const router = useRouter();
+    const pathname = usePathname();
     const {
         currentPage,
         setCurrentPage,
@@ -43,16 +46,15 @@ export default function SearchPagination(
     });
 
     // biome-ignore lint/correctness/useExhaustiveDependencies: intended
-    useEffect(() => {
-        router.push({
-            pathname: props.pathname,
-            query: {
-                page: currentPage,
-                perPage: pageSize,
-                ...props.query,
-            },
-        });
-    }, [currentPage]);
+    // useEffect(() => {
+    //     router.push(pathname, {
+    //         query: {
+    //             page: currentPage,
+    //             perPage: pageSize,
+    //             ...props.query,
+    //         },
+    //     });
+    // }, [currentPage]);
 
     useEffect(() => {
         const currentLast = currentPage * pageSize;

@@ -1,8 +1,9 @@
 import { GraphQLClient } from "graphql-request";
-import { getSdk } from "../graphql/graphql";
-import { HASURA_GRAPHQL_URL } from "./constants";
+import { getSdk } from "~/graphql/graphql";
 
-export const createHasuraClient = (token: string | null = null) => {
+const HASURA_GRAPHQL_URL = "https://poac.hasura.app/v1/graphql";
+
+export const getHasuraClient = (token: string | null = null) => {
     const headers =
         token !== null
             ? {
@@ -15,4 +16,4 @@ export const createHasuraClient = (token: string | null = null) => {
     return getSdk(client);
 };
 
-export type HasuraClient = ReturnType<typeof createHasuraClient>;
+export type HasuraClient = ReturnType<typeof getHasuraClient>;

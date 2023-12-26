@@ -2,7 +2,7 @@ import type { GetStaticPaths, GetStaticProps } from "next";
 
 import Meta from "~/components/Meta";
 import PackageDetails from "~/components/PackageDetails";
-import { createHasuraClient } from "~/utils/hasuraClient";
+import { getHasuraClient } from "~/app/search/_lib/hasuraClient";
 import type { Package } from "~/utils/types";
 
 interface NameProps {
@@ -35,7 +35,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         };
     }
 
-    const hasuraClient = createHasuraClient();
+    const hasuraClient = getHasuraClient();
     const data = await hasuraClient.getPackagesByName({
         name: `${group}/${name}`,
     });

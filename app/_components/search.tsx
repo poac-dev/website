@@ -10,7 +10,7 @@ export function SearchButton() {
     const [value, setValue] = useState("");
     const router = useRouter();
 
-    const handleKeyPress = (e) => {
+    const handleKeyDown = (e) => {
         if (e.key === "Enter") {
             router.push(`/search?q=${value}`);
         }
@@ -30,7 +30,7 @@ export function SearchButton() {
             }
             value={value}
             onValueChange={setValue}
-            onKeyDown={handleKeyPress}
+            onKeyDown={handleKeyDown}
         >
             Search packages
         </Input>

@@ -1,40 +1,53 @@
 "use client";
 
+// TODO: metadata
+import SearchResult from "./_components/SearchResult";
+import { useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
 import { Center, Text } from "@chakra-ui/react";
-import type { GetServerSideProps } from "next";
+import { CircularProgress } from "@nextui-org/react";
 
-import Meta from "~/components/Meta";
-import SearchResult from "~/components/SearchResult";
-import { PER_PAGE } from "~/utils/constants";
-import { createHasuraClient } from "~/utils/hasuraClient";
-import type { PackageOverview } from "~/utils/types";
+export default function Search() {
+    const searchParams = useSearchParams();
+    const query = searchParams?.get("q") ?? "";
+    const page = Number(searchParams?.get("page") ?? 1);
+    const perPage = Number(searchParams?.get("perPage") ?? 10);
 
-interface SearchProps {
-    packages?: PackageOverview[];
-    query: string;
-    perPage: number;
-    page: number;
-    totalCount?: number;
-}
+    const [loading, setLoading] = useState(true);
+    const [packages, setPackages] = useState([]);
+    const [totalCount, setTotalCount] = useState(0);
 
-export default function Search(props: SearchProps): JSX.Element {
+    useEffect(() => {
+        setLoading(true);
+        fetch(`/search/api?q=${query}&page=${page}&perPage=${perPage}`)
+            .then((response) => response.json())
+            .then((data) => {
+                if (!data || data.packages.length === 0) {
+                    return;
+                }
+                setPackages(data.packages);
+                setTotalCount(data.packages_aggregate?.aggregate?.count);
+                setLoading(false);
+            });
+    }, [query, page, perPage]);
+
+    if (loading) {
+        return (
+            <div className="flex flex-col items-center justify-center h-screen">
+                <CircularProgress size={"lg"} />
+            </div>
+        );
+    }
+
     return (
         <>
-            <Meta
-                title={
-                    props.query.length === 0
-                        ? "All Packages"
-                        : `Searching for '${props.query}'`
-                }
-            />
-            {props.packages && props.totalCount ? (
+            {packages && totalCount ? (
                 <SearchResult
-                    packages={props.packages}
-                    query={props.query}
-                    current_path="/search"
-                    perPage={props.perPage}
-                    page={props.page}
-                    totalCount={props.totalCount}
+                    packages={packages}
+                    query={query}
+                    perPage={perPage}
+                    page={page}
+                    totalCount={totalCount}
                 />
             ) : (
                 <Center>
@@ -44,28 +57,3 @@ export default function Search(props: SearchProps): JSX.Element {
         </>
     );
 }
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-    // JSON.stringify removes undefined fields meaning that the default value processes can be delegated to the API
-    // except for query. TODO: However, we have to keep those processes for props.
-    const query = context.query.query ?? "";
-    const page = context.query.page ? +context.query.page : 1;
-    const perPage = context.query.perPage ? +context.query.perPage : PER_PAGE;
-
-    const hasuraClient = createHasuraClient();
-    const data = await hasuraClient.searchPackages({
-        name: `%${query}%`,
-        limit: perPage,
-        offset: (page - 1) * perPage,
-    });
-
-    return {
-        props: {
-            packages: data.packages,
-            query,
-            perPage,
-            page,
-            totalCount: data.packages_aggregate?.aggregate?.count,
-        },
-    };
-};
