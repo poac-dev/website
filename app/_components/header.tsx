@@ -32,7 +32,7 @@ export function Header() {
                     <Link
                         isExternal
                         aria-label="Docs"
-                        className="p-1 text-default-600 dark:text-default-500"
+                        className="p-1 text-default-600 dark:text-default-500 text-sm"
                         href="https://doc.poac.dev"
                     >
                         <FontAwesomeIcon
@@ -40,7 +40,7 @@ export function Header() {
                             icon={faBookOpen}
                             width={20}
                         />
-                        &nbsp; Docs
+                        &nbsp;Docs
                     </Link>
                 </NavbarItem>
                 <NavbarItem>

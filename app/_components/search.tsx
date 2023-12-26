@@ -21,11 +21,12 @@ export function SearchButton() {
             type="search"
             placeholder="Search packages"
             aria-label="Search packages"
+            labelPlacement="outside"
             startContent={
                 <FontAwesomeIcon
                     className="text-default-600 dark:text-default-500"
                     icon={faMagnifyingGlass}
-                    width={15}
+                    width={13}
                 />
             }
             value={value}
