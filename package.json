@@ -13,7 +13,6 @@
     "generate": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
-    "@ajna/pagination": "^1.4.19",
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11",

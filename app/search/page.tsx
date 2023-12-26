@@ -1,20 +1,38 @@
 "use client";
 
 // TODO: metadata
-import SearchResult from "./_components/SearchResult";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { CircularProgress } from "@nextui-org/react";
+import {
+    Spacer,
+    Spinner,
+    Table,
+    TableHeader,
+    TableColumn,
+    TableBody,
+    TableRow,
+    TableCell,
+    Pagination,
+} from "@nextui-org/react";
 
 export default function Search() {
+    const router = useRouter();
+
     const searchParams = useSearchParams();
     const query = searchParams?.get("q") ?? "";
     const page = Number(searchParams?.get("page") ?? 1);
     const perPage = Number(searchParams?.get("perPage") ?? 10);
+    const [totalCount, setTotalCount] = useState(0);
+
+    const currentLast = page * perPage;
+    const currentPos = {
+        first: currentLast - (perPage - 1),
+        last: currentLast > totalCount ? totalCount : currentLast,
+    };
+    const numPages = Math.ceil(totalCount / perPage);
 
     const [loading, setLoading] = useState(true);
     const [packages, setPackages] = useState([]);
-    const [totalCount, setTotalCount] = useState(0);
 
     useEffect(() => {
         setLoading(true);
@@ -36,7 +54,7 @@ export default function Search() {
     if (loading) {
         return (
             <div className="flex flex-col items-center justify-center h-screen">
-                <CircularProgress size={"lg"} />
+                <Spinner size={"lg"} />
             </div>
         );
     }
@@ -49,13 +67,55 @@ export default function Search() {
         );
     }
 
+    const header = (
+        <span>
+            Displaying&nbsp;
+            <span className="font-bold">
+                {currentPos.first}-{currentPos.last}
+            </span>
+            &nbsp;of&nbsp;<span className="font-bold">{totalCount}</span>
+            &nbsp;total results
+        </span>
+    );
+
+    const handlePageChange = (page: number) => {
+        router.push(
+            "/search?q=" + query + "&page=" + page + "&perPage=" + perPage,
+        );
+    };
+
     return (
-        <SearchResult
-            packages={packages}
-            query={query}
-            perPage={perPage}
-            page={page}
-            totalCount={totalCount}
-        />
+        <div className="flex flex-col items-center justify-center m-4">
+            {header}
+            <Spacer y={4} />
+            <Table
+                removeWrapper
+                isStriped
+                selectionMode="single"
+                aria-label="Search results"
+            >
+                <TableHeader>
+                    <TableColumn>NAME</TableColumn>
+                    <TableColumn>VERSION</TableColumn>
+                    <TableColumn>EDITION</TableColumn>
+                </TableHeader>
+                <TableBody emptyContent={"No packages to display."}>
+                    {packages.map((pkg) => (
+                        <TableRow key={pkg["id"]}>
+                            <TableCell>{pkg["name"]}</TableCell>
+                            <TableCell>{pkg["version"]}</TableCell>
+                            <TableCell>{pkg["edition"]}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+            <Spacer y={4} />
+            <Pagination
+                showControls
+                total={numPages}
+                initialPage={page}
+                onChange={handlePageChange}
+            />
+        </div>
     );
 }
