@@ -16,7 +16,7 @@ import { SearchButton } from "./search";
 
 export function Header() {
     return (
-        <Navbar className="py-3">
+        <Navbar>
             <NavbarBrand>
                 <NextLink href="/">
                     <Logo />
