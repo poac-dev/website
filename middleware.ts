@@ -9,13 +9,14 @@ export function middleware(request: NextRequest) {
     // script-src 'self' 'nonce-${nonce}' 'strict-dynamic' static.cloudflareinsights.com ${
     //     IS_DEV ? "'unsafe-eval'" : ""
     // };
+    // style-src 'self' 'nonce-${nonce}';
 
     const cspHeader = `
     default-src 'self';
-    style-src 'self' 'nonce-${nonce}';
-    script-src 'self' 'strict-dynamic' static.cloudflareinsights.com 'unsafe-inline' ${
-        IS_DEV ? "'unsafe-eval'" : ""
-    }
+    script-src 'self' 'unsafe-inline' static.cloudflareinsights.com ${
+        IS_DEV ? "va.vercel-scripts.com 'unsafe-eval'" : ""
+    };
+    style-src 'self' 'unsafe-inline';
     connect-src 'self' vitals.vercel-insights.com;
     img-src 'self' blob: data:;
     font-src 'self';
