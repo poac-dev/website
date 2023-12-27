@@ -31,7 +31,6 @@ export function SearchButton() {
                 }
                 value={value}
                 onValueChange={setValue}
-                // onKeyDown={handleKeyDown}
             >
                 Search packages
             </Input>

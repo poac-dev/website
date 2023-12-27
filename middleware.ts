@@ -4,12 +4,16 @@ const IS_DEV = process.env.NODE_ENV === "development";
 
 export function middleware(request: NextRequest) {
     const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
+
+    // TODO: unsafe-inline is needed for NextUI?
+    // script-src 'self' 'nonce-${nonce}' 'strict-dynamic' static.cloudflareinsights.com ${
+    //     IS_DEV ? "'unsafe-eval'" : ""
+    // };
+
     const cspHeader = `
     default-src 'self';
-    script-src 'self' 'nonce-${nonce}' 'strict-dynamic' static.cloudflareinsights.com ${
-        IS_DEV ? "'unsafe-eval'" : ""
-    };
     style-src 'self' 'nonce-${nonce}';
+    script-src 'self' 'strict-dynamic' 'unsafe-inline' ${IS_DEV ? "'unsafe-eval'" : ""}
     connect-src 'self' vitals.vercel-insights.com;
     img-src 'self' blob: data:;
     font-src 'self';
