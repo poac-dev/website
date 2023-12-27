@@ -13,7 +13,9 @@ export function middleware(request: NextRequest) {
     const cspHeader = `
     default-src 'self';
     style-src 'self' 'nonce-${nonce}';
-    script-src 'self' 'strict-dynamic' 'unsafe-inline' ${IS_DEV ? "'unsafe-eval'" : ""}
+    script-src 'self' 'strict-dynamic' 'unsafe-inline' ${
+        IS_DEV ? "'unsafe-eval'" : ""
+    }
     connect-src 'self' vitals.vercel-insights.com;
     img-src 'self' blob: data:;
     font-src 'self';
