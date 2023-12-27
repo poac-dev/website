@@ -13,7 +13,7 @@ export function middleware(request: NextRequest) {
     const cspHeader = `
     default-src 'self';
     style-src 'self' 'nonce-${nonce}';
-    script-src 'self' 'strict-dynamic' 'unsafe-inline' ${
+    script-src 'self' 'strict-dynamic' static.cloudflareinsights.com 'unsafe-inline' ${
         IS_DEV ? "'unsafe-eval'" : ""
     }
     connect-src 'self' vitals.vercel-insights.com;
